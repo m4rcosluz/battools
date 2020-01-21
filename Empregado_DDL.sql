@@ -1,0 +1,10 @@
+--execute este DDL, antes de executar o programa
+CREATE TABLE EMPREGADO(
+	ID   	 NUMBER(8),
+	CONSTRAINT ID_PK PRIMARY KEY(ID),
+	NOME 	 VARCHAR(30),
+	DAT_NASC DATE,
+	SALARIO  NUMBER(15,2)
+);
+
+COMMIT WORK;
