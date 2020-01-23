@@ -124,7 +124,6 @@ public class config {
 				pstm11 = conn11.prepareStatement(SELECT_CONFIG_USER);
 				rs = ((PreparedStatement) pstm11).executeQuery();
 				while (rs.next()) {
-					System.out.println(rs.getString(1));
 					String valida = rs.getString(1);
 					return valida;
 				}

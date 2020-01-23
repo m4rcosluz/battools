@@ -22,7 +22,9 @@ public class AcessoBD{
         String banco = "";
  
         //so renomear se precisar do outro properties
-        File prop_file = new File("\\\\mvrec_suporte\\BAT_MARCOS\\BAT_JAVA\\jdbc.properties");
+        
+        String usuario_dir = System.getProperty("user.dir")+"\\jdbc.properties";
+        File prop_file = new File(usuario_dir);
  
         if (!prop_file.isFile()) {
             throw new Exception("Não achou a arquivo de propriedade, caminho:" + prop_file.getAbsolutePath() + " , errado.");
