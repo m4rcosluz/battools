@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import br.modelo.gravaLog;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -46,6 +49,10 @@ public class Aplicativos {
 		Aplicativos.setAutoRequestFocus(false);
 		String cor = br.modelo.config.define_cor(null);
 		
+		gravaLog Log=new gravaLog();
+		Log.setFuncao("Entrou na página Aplicativos.");
+		gravaLog.insere_log(Log);
+		
 		if(cor.equals("Azul")){
 			Aplicativos.getContentPane().setBackground(Color.BLUE);
 		}
@@ -74,6 +81,9 @@ public class Aplicativos {
 		btnVnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão VNC - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("C:\\Program Files\\UltraVNC\\vncviewer.exe");
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -88,6 +98,9 @@ public class Aplicativos {
 		btnTs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão TS - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("C:\\Windows\\system32\\mstsc.exe");
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -106,6 +119,9 @@ public class Aplicativos {
 		btnAnydesk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão AnyDesk - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("\\\\Mvrec_suporte\\BAT_MARCOS\\Data\\arquivos_BAT\\AnyDesk.exe");
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -124,6 +140,9 @@ public class Aplicativos {
 		btnJira.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão Jira - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("\\\\Mvrec_suporte\\BAT_MARCOS\\Data\\arquivos_BAT\\Jira.bat");
 				} catch (IOException jira) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -138,6 +157,9 @@ public class Aplicativos {
 		btnMyplace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão MyPlace - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\Data\\arquivos_BAT\\MyPlace.bat");
 				} catch (IOException place) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -152,6 +174,9 @@ public class Aplicativos {
 		btnOcomon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão Ocomon - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\Data\\arquivos_BAT\\Ocomon.bat");
 				} catch (IOException ocomon) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -166,6 +191,9 @@ public class Aplicativos {
 		btnAutoscreenrecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão AutoScreen - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\Data\\arquivos_BAT\\AutoScreen\\AutoScreenRecorder.exe");
 				} catch (IOException autoscrem) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -181,6 +209,9 @@ public class Aplicativos {
 		btnLightshot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Clicou no botão LightShot - Aplicativos.");
+					gravaLog.insere_log(Log);
 					Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\Data\\arquivos_BAT\\Lightshot\\Lightshot.exe");
 				} catch (IOException print) {
 					JOptionPane.showMessageDialog(null, "Atenção: Programa não encontrado.",  "Atenção", JOptionPane.WARNING_MESSAGE);

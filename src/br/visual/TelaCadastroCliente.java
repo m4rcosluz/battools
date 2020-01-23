@@ -15,6 +15,7 @@ import br.modelo.Cliente;
 import br.modelo.Empregado;
 import br.modelo.EmpregadoDAO;
 import br.modelo.IN_UP_DEL_Cliente;
+import br.modelo.gravaLog;
 import br.controle.ValidaLetras;
 
 import javax.swing.JButton;
@@ -63,6 +64,9 @@ public class TelaCadastroCliente {
 		frmCadastroCli = new JFrame();
 		frmCadastroCli.setAutoRequestFocus(false);
 		String cor = br.modelo.config.define_cor(null);
+		gravaLog Log=new gravaLog();
+		Log.setFuncao("Entrou na página Cadastro Cliente.");
+		gravaLog.insere_log(Log);
 		
 		if(cor.equals(null)) {
 			frmCadastroCli.getContentPane().setBackground(SystemColor.activeCaption);
@@ -140,12 +144,17 @@ public class TelaCadastroCliente {
 				String nome = textNome.getText();
 				String cliente = textCd_cliente.getText();
 				String ramal = textRamal.getText();
+				
 				cli.setCd_contato(id);
 				cli.setNm_contato(nome);
 				cli.setCd_cliente(cliente);
 				cli.setCd_ramal(ramal);
 				cli_IN_UP_DEL.insere_cliente(cli);
 				IN_UP_DEL_Cliente.update_nome_cx_alta(null);
+				
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
+				gravaLog.insere_log(Log);
 				
 			}
 		});

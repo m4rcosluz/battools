@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 import br.controle.AcessoBD;
 import br.controle.ValidaLetras;
 import br.modelo.Cliente;
+import br.modelo.gravaLog;
+
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,6 +69,10 @@ public class BuscaContato {
 		
 		//frame = new JFrame();
 		frmBuscaContatos.setAutoRequestFocus(false);
+		
+		gravaLog Log=new gravaLog();
+		Log.setFuncao("Entrou na página Busca Contato.");
+		gravaLog.insere_log(Log);
 		
 		String cor = br.modelo.config.define_cor(null);
 		
@@ -143,6 +149,9 @@ public class BuscaContato {
 				
 				if(textCliente.getText().trim().isEmpty()){
 					SELECT="SELECT * FROM cliente_contato where Upper(nm_contato) like "+bkpNome;
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Pesquisou pelo contato: "+bkpNome+" - Busca Contato");
+					gravaLog.insere_log(Log);
 				} 
 
 				
@@ -150,11 +159,20 @@ public class BuscaContato {
 				if(textNome.getText().length() > 0 && textCliente.getText().length() > 0){
 					System.out.println("entrou");
 					SELECT="SELECT * FROM cliente_contato where cd_cliente ="+bkpcodigo_cliente+" and Upper(nm_contato) like "+bkpNome;
-				} 
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Pesquisou pelo contato: "+bkpNome +" Cliente: "+ codigo_cliente+" - Busca Contato");
+					gravaLog.insere_log(Log);
+					} 
 				
 				if(textNome.getText().length() < 1 && textCliente.getText().length() < 1){
 					JOptionPane.showMessageDialog(null, "É Necessário informar o código do cliente e/ou o nome do contato.", "Atenção", JOptionPane.WARNING_MESSAGE);
 					return;
+				}
+				
+				if(textNome.getText().length() < 1 && textCliente.getText().length() > 0){
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Pesquisou pelo cliente: "+codigo_cliente+" - Busca Contato");
+					gravaLog.insere_log(Log);
 				}
 				
 				
@@ -189,6 +207,9 @@ public class BuscaContato {
 					}
 					
 					if(textLista.getText().trim().isEmpty()){
+						gravaLog Log=new gravaLog();
+						Log.setFuncao("Não encontrou contatos com os parametros passados. - Busca Contato");
+						gravaLog.insere_log(Log);
 						JOptionPane.showMessageDialog(null, "Não foram encontrados contatos deste cliente.", "Atenção", JOptionPane.WARNING_MESSAGE);
 						return;
 						}
@@ -219,7 +240,7 @@ public class BuscaContato {
 		btnVoltar.setBounds(264, 79, 89, 23);
 		frmBuscaContatos.getContentPane().add(btnVoltar);
 		
-		JLabel lblNome = new JLabel("Nome do Analista:");
+		JLabel lblNome = new JLabel("Nome (Cx Alta):");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNome.setBounds(10, 68, 117, 16);
 		frmBuscaContatos.getContentPane().add(lblNome);

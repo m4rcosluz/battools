@@ -65,6 +65,10 @@ public class config {
 		
 		configBat = new JFrame();
 		
+		gravaLog Log=new gravaLog();
+		Log.setFuncao("Entou na página Config.");
+		gravaLog.insere_log(Log);
+		
 		String cor = br.modelo.config.define_cor(null);
 		
 		if(cor.equals("Azul")){
@@ -114,6 +118,9 @@ public class config {
 		btnSalvar.addActionListener(new ActionListener() {
 			private ResultSet rs;
 			public void actionPerformed(ActionEvent arg0) {
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Clicou no botão Salvar - Config.");
+				gravaLog.insere_log(Log);
 				
 				String teste = br.modelo.config.define_cor(null);
 				System.out.print(teste);
@@ -164,6 +171,8 @@ public class config {
 					double valida = Double.parseDouble(result);
 					
 					if(valida < 1){
+						Log.setFuncao("Inseriu configuração - Config");
+						gravaLog.insere_log(Log);
 						System.out.print("insert");
 						
 						String cor = ((String) comboBox.getSelectedItem());
@@ -175,8 +184,9 @@ public class config {
 						br.modelo.config.insere_config(conf);
 						
 					} else {
+						Log.setFuncao("Atualizou configuração - Config");
+						gravaLog.insere_log(Log);
 						System.out.print("update");
-						
 						String cor = ((String) comboBox.getSelectedItem());
 						String inicia_windows = ((String) comboBox_1.getSelectedItem());
 						//IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();

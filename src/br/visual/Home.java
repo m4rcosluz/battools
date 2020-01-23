@@ -20,6 +20,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import br.modelo.Cliente;
+import br.modelo.IN_UP_DEL_Cliente;
+import br.modelo.gravaLog;
+
 import java.awt.Font;
 import java.awt.List;
 
@@ -61,6 +66,12 @@ public class Home {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
+		gravaLog Log=new gravaLog();
+		Log.setFuncao("Entrou na página home.");
+		gravaLog.insere_log(Log);
+		
 		String validacao = br.modelo.config.verifica_config_user(null);
 		if (validacao.equals("0")) {
 			System.out.print("insert");
@@ -106,6 +117,9 @@ public class Home {
 		JButton btnNewButton = new JButton("Calcular Decimo 13\u00BA");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Clicou no botão Décimo terceiro - HOME");
+				gravaLog.insere_log(Log);
 				// DENTRO DO BOTÃO, FIZ CHAMAR A CLASS MAIN DA PROXIMA TELA, E OCUTEI A HOME.
 				Decimo_terceiro.main(null);
 				frmHome.setVisible(false);
@@ -115,6 +129,9 @@ public class Home {
 		JButton btnCalcularHoraExtra = new JButton("Calcular Hora Extra");
 		btnCalcularHoraExtra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Clicou no botão Hora Extra - HOME");
+				gravaLog.insere_log(Log);
 				// DENTRO DO BOTÃO, FIZ CHAMAR A CLASS MAIN DA PROXIMA TELA, E OCUTEI A HOME.
 				Hora_extra.main(null);
 				frmHome.setVisible(false);
@@ -128,6 +145,9 @@ public class Home {
 		JButton btnContatoDeClientes = new JButton("Contato de Clientes");
 		btnContatoDeClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Clicou no botão Contato de Clientes - HOME");
+				gravaLog.insere_log(Log);
 				try {
 					String cor = br.modelo.config.define_cor(null);
 				} catch (Exception e1) {
@@ -145,6 +165,9 @@ public class Home {
 		JButton btnAplicativos = new JButton("Aplicativos");
 		btnAplicativos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Clicou no botão Aplicativos - HOME");
+				gravaLog.insere_log(Log);
 				Aplicativos.main(null);
 				frmHome.setVisible(false);
 			}
@@ -153,12 +176,15 @@ public class Home {
 		JButton btnConfigurao = new JButton("Personaliza\u00E7\u00E3o");
 		btnConfigurao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Clicou no botão Personalizacao - HOME");
+				gravaLog.insere_log(Log);
 				br.visual.config.main(null);
 				frmHome.setVisible(false);
 			}
 		});
 
-		JLabel lblV = new JLabel("v2020.01");
+		JLabel lblV = new JLabel("v20.01.23");
 		lblV.setFont(new Font("Papyrus", Font.BOLD, 15));
 
 		GroupLayout groupLayout = new GroupLayout(frmHome.getContentPane());

@@ -45,7 +45,7 @@ public class AcessoBD{
         Class.forName(driver);
  
         connection = DriverManager.getConnection(url + banco, usuario, senha);
-        System.out.println(connection);
+
         return connection;
     }
  
