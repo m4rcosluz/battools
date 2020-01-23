@@ -7,10 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
-/**
-*
-* @author Roberto Silva
-*/
+
 public class AcessoBD{
  
     public static Connection conectar() throws Exception {

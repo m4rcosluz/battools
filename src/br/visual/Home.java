@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.controle.Acesso;
 import br.modelo.Cliente;
 import br.modelo.IN_UP_DEL_Cliente;
 import br.modelo.gravaLog;
@@ -71,6 +72,8 @@ public class Home {
 		gravaLog Log=new gravaLog();
 		Log.setFuncao("Entrou na página home.");
 		gravaLog.insere_log(Log);
+		
+		Acesso.insere_acesso(null);
 		
 		String validacao = br.modelo.config.verifica_config_user(null);
 		if (validacao.equals("0")) {
