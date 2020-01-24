@@ -10,6 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -22,6 +25,7 @@ import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.controle.Acesso;
+import br.controle.AcessoBD;
 import br.modelo.Cliente;
 import br.modelo.IN_UP_DEL_Cliente;
 import br.modelo.gravaLog;
@@ -35,6 +39,7 @@ import javax.swing.JOptionPane;
 public class Home {
 
 	protected static final Object Resultado = null;
+	private static final String SELECT_GERAL = null;
 	private JFrame frmHome;
 
 	/**
@@ -65,8 +70,9 @@ public class Home {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @return 
 	 */
-	private void initialize() {
+	private Object initialize() {
 		
 		
 		gravaLog Log=new gravaLog();
@@ -74,16 +80,7 @@ public class Home {
 		gravaLog.insere_log(Log);
 		
 		Acesso.insere_acesso(null);
-		
-		String validacao = br.modelo.config.verifica_config_user(null);
-		if (validacao.equals("0")) {
-			br.modelo.config conf = new br.modelo.config();
-			conf.setCor("Branco");
-			conf.setInicia_windows("Sim");
-			br.modelo.config.insere_config(conf);
-
-		}
-		
+	
 		frmHome = new JFrame();
 		frmHome.setAutoRequestFocus(false);
 
@@ -108,6 +105,19 @@ public class Home {
 		if (cor.equals("Preto")) {
 			frmHome.getContentPane().setBackground(Color.BLACK);
 		}
+		
+		String validacao = br.modelo.config.verifica_config_user(null);
+		if (validacao.equals("0")) {
+			br.modelo.config conf = new br.modelo.config();
+			conf.setCor("Branco");
+			conf.setInicia_windows("Sim");
+			br.modelo.config.insere_config(conf);
+
+		}
+		
+
+			
+	
 
 		String usuario_dir = System.getProperty("user.dir");
 		System.out.println(usuario_dir);
@@ -231,6 +241,7 @@ public class Home {
 						.addComponent(btnConfigurao, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap()));
 		frmHome.getContentPane().setLayout(groupLayout);
+		return groupLayout;
 	}
 
 	public void Abri_hora_extra(boolean b) {
