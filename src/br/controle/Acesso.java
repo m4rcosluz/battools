@@ -49,8 +49,8 @@ public class Acesso {
 	
 	public static String verifica_acesso_geral() {
 		{
-
-			String SELECT_ACESSO = "SELECT sum(acesso_user) FROM acesso_battools";
+			String usuario_sessao = System.getProperty("user.name");
+			String SELECT_ACESSO = "SELECT sum(acesso_user) FROM acesso_battools where cd_usuario = "+"'"+usuario_sessao+"'";
 
 			Connection conn11 = null;
 			Object pstm11;
@@ -71,6 +71,34 @@ public class Acesso {
 			}
 
 		}
+		return dt_acesso;
+	}
+		
+		
+		public static String verifica_acesso_user() {
+			{
+
+				String SELECT_ACESSO_user = "SELECT sum(acesso_user) FROM acesso_battools";
+
+				Connection conn11 = null;
+				Object pstm11;
+				try {
+					conn11 = AcessoBD.conectar();
+					pstm11 = conn11.prepareStatement(SELECT_ACESSO_user);
+					ResultSet rs = ((PreparedStatement) pstm11).executeQuery();
+					while (rs.next()) {
+						String acesso = rs.getString(1);
+						return acesso;
+					}
+
+				} catch (Exception e) {
+					System.err.println("Ocorreu um erro, causa:" + e.getMessage());
+					e.printStackTrace();
+				} finally {
+					AcessoBD.desconectar(conn11);
+				}
+
+			}
 		return dt_acesso;
 	}
 
