@@ -191,5 +191,35 @@ public class config {
 		return cor;
 
 	}
+	
+	public static String verifica_campo_salario() {
+		{
+
+			String usuario_sessaob = System.getProperty("user.name");
+			String usuario_sessao = "'" + usuario_sessaob + "'";
+			String SELECT_CONFIG_USER = "SELECT salario FROM config_battols where cd_usuario = "+usuario_sessao;
+
+			Connection conn11 = null;
+			Object pstm11;
+			try {
+				conn11 = AcessoBD.conectar();
+				pstm11 = conn11.prepareStatement(SELECT_CONFIG_USER);
+				rs = ((PreparedStatement) pstm11).executeQuery();
+				while (rs.next()) {
+					String valida = rs.getString(1);
+					return valida;
+				}
+
+			} catch (Exception e) {
+				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				AcessoBD.desconectar(conn11);
+			}
+
+		}
+		return cor;
+
+	}
 
 }

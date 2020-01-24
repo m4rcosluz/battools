@@ -60,6 +60,9 @@ public class Hora_extra {
 		frmHoraExtra.setAutoRequestFocus(false);
 		try {
 			String cor = br.modelo.config.define_cor(null);
+			
+
+
 
 			if (cor.equals(null)) {
 				cor = "Branco";
@@ -102,6 +105,16 @@ public class Hora_extra {
 		txt_salario.setBackground(SystemColor.inactiveCaptionBorder);
 		txt_salario.setText("0");
 		txt_salario.setDocument(new ValidaLetras());
+		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
+		String salario_user = br.modelo.config.verifica_campo_salario();
+
+				if(sn_salario_campo ==null) {
+					sn_salario_campo = "Não";
+				}
+				
+				if(sn_salario_campo.equals("Sim")) {
+					txt_salario.setText(salario_user);
+				}
 
 		final JTextField txt_hora = new JTextField();
 		txt_hora.setBackground(SystemColor.inactiveCaptionBorder);

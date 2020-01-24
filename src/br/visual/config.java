@@ -32,7 +32,7 @@ public class config {
 	private JFrame configBat;
 	private JTextField textField;
 	private JTextField campoCor;
-	private JTextField salario;
+	private JTextField txtSalario;
 
 	/**
 	 * Launch the application.
@@ -103,6 +103,7 @@ public class config {
 		comboBox.setBounds(10, 98, 107, 20);
 		configBat.getContentPane().add(comboBox);
 		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
+		String salario_user = br.modelo.config.verifica_campo_salario();
 		final JComboBox<Object> comboBox_2 = new JComboBox<Object>(new Object[]{sn_salario_campo,"Sim","Não"});
 		comboBox_2.setBounds(10, 165, 56, 20);
 		configBat.getContentPane().add(comboBox_2);
@@ -121,18 +122,19 @@ public class config {
 		lblCor.setBounds(10, 82, 65, 14);
 		configBat.getContentPane().add(lblCor);
 		
-		salario = new JTextField();
-		salario.setBounds(131, 165, 65, 20);
-		salario.setColumns(10);
+		txtSalario = new JTextField();
+		txtSalario.setBounds(131, 165, 65, 20);
+		txtSalario.setColumns(10);
 		
 		if(sn_salario_campo ==null) {
 			sn_salario_campo = "Não";
 		}
 		
 		if(sn_salario_campo.equals("Sim")) {
-			salario.setEnabled(true);
+			txtSalario.setEnabled(true);
+			txtSalario.setText(salario_user);
 		} else {
-			salario.setEnabled(false);
+			txtSalario.setEnabled(false);
 			} 
 		
 		
@@ -211,7 +213,7 @@ public class config {
 						System.out.print("update");
 						String cor = ((String) comboBox.getSelectedItem());
 						String sn_salario = ((String) comboBox_2.getSelectedItem());
-						String salario_user = salario.getText();
+						String salario_user = txtSalario.getText();
 						String inicia_windows = ((String) comboBox_1.getSelectedItem());
 						//IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
 						br.modelo.config conf=new br.modelo.config();
@@ -229,9 +231,9 @@ public class config {
 				String salario_user = ((String) comboBox_2.getSelectedItem());	
 				
 				if(salario_user.equals("Sim")) {
-					salario.setEnabled(true);
+					txtSalario.setEnabled(true);
 				} else {
-					salario.setEnabled(false);
+					txtSalario.setEnabled(false);
 					} 
 
 				
@@ -318,7 +320,7 @@ public class config {
 		lblSalrio.setBounds(76, 168, 45, 14);
 		configBat.getContentPane().add(lblSalrio);
 		
-		configBat.getContentPane().add(salario);
+		configBat.getContentPane().add(txtSalario);
 
 	}
 		

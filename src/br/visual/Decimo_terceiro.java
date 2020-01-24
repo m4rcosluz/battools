@@ -98,6 +98,16 @@ public class Decimo_terceiro {
 		txt_salario.setDocument(new ValidaLetras());
 		txt_salario.setBackground(SystemColor.inactiveCaptionBorder);
 		txt_salario.setText("0");
+		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
+		String salario_user = br.modelo.config.verifica_campo_salario();
+
+				if(sn_salario_campo ==null) {
+					sn_salario_campo = "Não";
+				}
+				
+				if(sn_salario_campo.equals("Sim")) {
+					txt_salario.setText(salario_user);
+				}
 		final JLabel lblMsgMeses = new JLabel(
 				"Se a quantidade de meses forem menores que 3, valores negativos podem ser apresentados.");
 		lblMsgMeses.setForeground(Color.RED);
