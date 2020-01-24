@@ -32,6 +32,7 @@ public class config {
 	private JFrame configBat;
 	private JTextField textField;
 	private JTextField campoCor;
+	private JTextField salario;
 
 	/**
 	 * Launch the application.
@@ -68,7 +69,8 @@ public class config {
 		gravaLog Log=new gravaLog();
 		Log.setFuncao("Entou na página Config.");
 		gravaLog.insere_log(Log);
-		
+	
+
 		String cor = br.modelo.config.define_cor(null);
 		
 		if(cor.equals("Azul")){
@@ -100,7 +102,12 @@ public class config {
 		final JComboBox<Object> comboBox = new JComboBox(new Object[]{cor,"Azul","Preto","Vermelho", "Rosa", "Branco"});
 		comboBox.setBounds(10, 98, 107, 20);
 		configBat.getContentPane().add(comboBox);
+		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
+		final JComboBox<Object> comboBox_2 = new JComboBox<Object>(new Object[]{sn_salario_campo,"Sim","Não"});
+		comboBox_2.setBounds(10, 165, 56, 20);
+		configBat.getContentPane().add(comboBox_2);
 		
+		String sn_salario = ((String) comboBox_2.getSelectedItem());
 		
 		final JComboBox<Object> comboBox_1 = new JComboBox<Object>(new Object[]{"Sim","Não"});
 		comboBox_1.setBounds(10, 134, 107, 20);
@@ -113,6 +120,21 @@ public class config {
 		JLabel lblCor = new JLabel("Cor");
 		lblCor.setBounds(10, 82, 65, 14);
 		configBat.getContentPane().add(lblCor);
+		
+		salario = new JTextField();
+		salario.setBounds(131, 165, 65, 20);
+		salario.setColumns(10);
+		
+		if(sn_salario_campo ==null) {
+			sn_salario_campo = "Não";
+		}
+		
+		if(sn_salario_campo.equals("Sim")) {
+			salario.setEnabled(true);
+		} else {
+			salario.setEnabled(false);
+			} 
+		
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -188,10 +210,14 @@ public class config {
 						gravaLog.insere_log(Log);
 						System.out.print("update");
 						String cor = ((String) comboBox.getSelectedItem());
+						String sn_salario = ((String) comboBox_2.getSelectedItem());
+						String salario_user = salario.getText();
 						String inicia_windows = ((String) comboBox_1.getSelectedItem());
 						//IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
 						br.modelo.config conf=new br.modelo.config();
 						conf.setCor(cor);
+						conf.setSnSalario(sn_salario);
+						conf.setSalario(salario_user);
 						conf.setInicia_windows(inicia_windows);
 						br.modelo.config.update_config(conf);
 						
@@ -199,6 +225,15 @@ public class config {
 					
 				String cor1 = ((String) comboBox.getSelectedItem());	
 				String inicia_windows = (String) comboBox_1.getSelectedItem(); 
+				
+				String salario_user = ((String) comboBox_2.getSelectedItem());	
+				
+				if(salario_user.equals("Sim")) {
+					salario.setEnabled(true);
+				} else {
+					salario.setEnabled(false);
+					} 
+
 				
 				if(inicia_windows.equals ("Sim")){
 					try {
@@ -269,8 +304,21 @@ public class config {
 		campoCor.setVisible(false);
 		campoCor.setBounds(10, 11, 97, 20);
 		configBat.getContentPane().add(campoCor);
-		textField.setVisible(false);
+		
+		JLabel lblSalarioAutExtra = new JLabel("Salario Aut. Extra e Decimo?");
+		lblSalarioAutExtra.setBounds(10, 152, 169, 14);
+		configBat.getContentPane().add(lblSalarioAutExtra);
+		
+
+		
+		JLabel lblSalrio = new JLabel("Sal\u00E1rio:");
+		lblSalrio.setBounds(76, 168, 45, 14);
+		configBat.getContentPane().add(lblSalrio);
+		
+		configBat.getContentPane().add(salario);
+
 	}
+		
 
 	protected char[] getCor() {
 		// TODO Auto-generated method stub
