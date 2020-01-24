@@ -35,6 +35,7 @@ import java.awt.List;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Home {
 
@@ -90,6 +91,7 @@ public class Home {
 	
 		String acesso_geral = Acesso.verifica_acesso_geral();
 		String acesso_user = Acesso.verifica_acesso_user();
+		String ultimo_acesso = Acesso.verifica_ultimo_acesso();
 		System.out.print(acesso_geral);
 		
 		frmHome = new JFrame();
@@ -159,9 +161,6 @@ public class Home {
 			}
 		});
 
-		JLabel lblTeste = new JLabel("Bat Tools");
-		lblTeste.setFont(new Font("Papyrus", Font.BOLD, 15));
-
 		JButton btnContatoDeClientes = new JButton("Contato de Clientes");
 		btnContatoDeClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -212,6 +211,9 @@ public class Home {
 		
 		JLabel lblSeusAcessosNull = new JLabel("Seus acessos: "+acesso_geral);
 		lblSeusAcessosNull.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JLabel lblltimoLogin = new JLabel("\u00DAltimo Login: "+ultimo_acesso);
+		lblltimoLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		GroupLayout groupLayout = new GroupLayout(frmHome.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -232,30 +234,30 @@ public class Home {
 							.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
 							.addComponent(btnAplicativos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
 					.addGap(42))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblSeusAcessosNull)
-						.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
-					.addGap(43)
-					.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(353, Short.MAX_VALUE)
 					.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(lblSeusAcessosNull)
+					.addContainerGap(337, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(lblltimoLogin, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lbAcesso))
-								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))))
-					.addPreferredGap(ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+					.addComponent(lbAcesso)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblltimoLogin, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addGap(23)
+					.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))

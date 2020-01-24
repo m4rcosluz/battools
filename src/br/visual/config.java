@@ -204,16 +204,16 @@ public class config {
 					try {
 						Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\BAT_JAVA\\src\\br\\controle\\instala_inicializar.bat");
 					} catch (IOException e) {
-						JOptionPane.showMessageDialog(null, "Atenção: Erro ao ativar configuração.",  "Atenção", JOptionPane.WARNING_MESSAGE);
-						return;
+						JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar mover o bat para a inicialização do S.O.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+						
 					}
 					
 				} else {
 					try {
 						Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\BAT_JAVA\\src\\br\\controle\\apaga_inicializar.bat");
 					} catch (IOException e) {
-						JOptionPane.showMessageDialog(null, "Atenção: Erro ao desativar configuração.",  "Atenção", JOptionPane.WARNING_MESSAGE);
-						return;
+						JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar mover o bat para a inicialização do S.O.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+						
 					}
 				}
 				
@@ -239,10 +239,7 @@ public class config {
 			}
 			
 		});
-		//btnSalvar.setVerticalAlignment(SwingConstants.TOP);
-		//btnSalvar.setForeground(Color.GRAY);
-		//btnSalvar.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));
-		//btnSalvar.setBackground(SystemColor.info);
+
 		btnSalvar.setBounds(273, 225, 97, 25);
 		configBat.getContentPane().add(btnSalvar);
 		
