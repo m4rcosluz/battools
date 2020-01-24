@@ -295,11 +295,14 @@ public class config {
 		configBat.getContentPane().add(btnVoltar);
 		
 		textField = new JTextField();
+		textField.setVisible(false);
+		textField.setEnabled(false);
 		textField.setBackground(SystemColor.inactiveCaptionBorder);
 		textField.setBounds(0, 0, 107, 20);
 		configBat.getContentPane().add(textField);
 		
 		campoCor = new JTextField();
+		campoCor.setEnabled(false);
 		campoCor.setColumns(10);
 		campoCor.setVisible(false);
 		campoCor.setBounds(10, 11, 97, 20);
