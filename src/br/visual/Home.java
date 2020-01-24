@@ -74,7 +74,13 @@ public class Home {
 	 */
 	private Object initialize() {
 		
-		
+		String validacao = br.modelo.config.verifica_config_user(null);
+		if (validacao.equals("0")) {
+			br.modelo.config conf = new br.modelo.config();
+			conf.setCor("Branco");
+			conf.setInicia_windows("Sim");
+			br.modelo.config.insere_config(conf);
+		}
 		
 		gravaLog Log=new gravaLog();
 		Log.setFuncao("Entrou na página home.");
@@ -88,8 +94,11 @@ public class Home {
 		
 		frmHome = new JFrame();
 		frmHome.setAutoRequestFocus(false);
+		
 
+		
 		String cor = br.modelo.config.define_cor(null);
+
 
 		if (cor.equals("Azul")) {
 			frmHome.getContentPane().setBackground(Color.BLUE);
@@ -111,15 +120,8 @@ public class Home {
 			frmHome.getContentPane().setBackground(Color.BLACK);
 		}
 		
-		String validacao = br.modelo.config.verifica_config_user(null);
-		if (validacao.equals("0")) {
-			br.modelo.config conf = new br.modelo.config();
-			conf.setCor("Branco");
-			conf.setInicia_windows("Sim");
-			br.modelo.config.insere_config(conf);
 
-		}
-		
+
 
 			
 	
