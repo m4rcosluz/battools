@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import br.modelo.config;
 import br.modelo.gravaLog;
 
 public class Acesso {
 
 	private int acesso_user;
-	private String dt_acesso;
+	private static String dt_acesso;
 	
 	public int getAcesso_user() {
 		return acesso_user;
@@ -44,7 +45,34 @@ public class Acesso {
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
 	}
-
 	
+	
+	public static String verifica_acesso_geral() {
+		{
+
+			String SELECT_ACESSO = "SELECT sum(acesso_user) FROM acesso_battools";
+
+			Connection conn11 = null;
+			Object pstm11;
+			try {
+				conn11 = AcessoBD.conectar();
+				pstm11 = conn11.prepareStatement(SELECT_ACESSO);
+				ResultSet rs = ((PreparedStatement) pstm11).executeQuery();
+				while (rs.next()) {
+					String acesso = rs.getString(1);
+					return acesso;
+				}
+
+			} catch (Exception e) {
+				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				AcessoBD.desconectar(conn11);
+			}
+
+		}
+		return dt_acesso;
+	}
+
 
 }

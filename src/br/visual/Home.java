@@ -75,12 +75,17 @@ public class Home {
 	private Object initialize() {
 		
 		
+		
 		gravaLog Log=new gravaLog();
 		Log.setFuncao("Entrou na página home.");
 		gravaLog.insere_log(Log);
 		
 		Acesso.insere_acesso(null);
 	
+		String acesso_geral = Acesso.verifica_acesso_geral();
+		
+		System.out.print(acesso_geral);
+		
 		frmHome = new JFrame();
 		frmHome.setAutoRequestFocus(false);
 
