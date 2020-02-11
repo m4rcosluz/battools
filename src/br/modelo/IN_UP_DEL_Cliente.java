@@ -19,7 +19,34 @@ public class IN_UP_DEL_Cliente {
 	
 	
 	public void insere_cliente(Cliente cli){
+		
+		
+		Connection conn1 = null;
+		Object pstm1;
+		try {String VALIDA_CONEXAO = "select * from dbamv.cliente_contato";
+			conn1=AcessoBD.conectar();
+			pstm1=conn1.prepareStatement(VALIDA_CONEXAO);
+			rs=((PreparedStatement) pstm1).executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getString(1));
+				
+				} 
+				
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar conectar no banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+			return;
+		}finally{
+			AcessoBD.desconectar(conn1);
+		}
+		
+		
+		
 		try {
+			
+			
+			
+			
 			String usuario_sessao = System.getProperty("user.name");
 			conn=AcessoBD.conectar();
 			pstm=conn.prepareStatement(INSERT);

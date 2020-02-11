@@ -47,8 +47,7 @@ public static void insere_log(gravaLog log){
 		((PreparedStatement) pstm).executeUpdate();
 
 	} catch (Exception e) {
-		System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-		e.printStackTrace();
+		//JOptionPane.showMessageDialog(null, "Atenção: A aplicação pode não funcionar por completa, não",  "Atenção", JOptionPane.WARNING_MESSAGE);
 	}finally{
 		AcessoBD.desconectar(conn, pstm, rs);
 	}

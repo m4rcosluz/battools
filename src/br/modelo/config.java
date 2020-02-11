@@ -25,27 +25,8 @@ public class config {
 		this.inicia_windows = inicia_windows;
 	}
 
-	public String getSalario() {
-		return salario;
-	}
-
-	public void setSalario(String salario) {
-		this.salario = salario;
-	}
-	
-	public String getSnSalario() {
-		return SnSalario;
-	}
-
-	public void setSnSalario(String snSalario) {
-		SnSalario = snSalario;
-	}
-
 	private static String cor;
 	private String inicia_windows;
-	private String salario;
-	private String SnSalario;
-
 
 	private static Connection conn;
 	private static PreparedStatement pstm;
@@ -53,8 +34,8 @@ public class config {
 	static String usuario_sessaob = System.getProperty("user.name");
 	static String usuario_sessao = "'" + usuario_sessaob + "'";
 
-	private final static String INSERT = " INSERT INTO dbamv.config_battols (cd_usuario, nm_cor, sn_iniciar_so, dt_gravacao,sn_salario,salario)VALUES(?,?,?,sysdate,?,?)";
-	private final static String UPDATE = " UPDATE config_battols set cd_usuario = ?, nm_cor = ?, sn_iniciar_so = ?, sn_salario = ?, salario = ?  where cd_usuario ="
+	private final static String INSERT = " INSERT INTO dbamv.config_battols (cd_usuario, nm_cor, sn_iniciar_so, dt_gravacao)VALUES(?,?,?,sysdate)";
+	private final static String UPDATE = " UPDATE config_battols set cd_usuario = ?, nm_cor = ?, sn_iniciar_so = ?, dt_gravacao = sysdate where cd_usuario ="
 			+ usuario_sessao;
 
 	public static void insere_config(config conf) {
@@ -65,14 +46,11 @@ public class config {
 			pstm.setString(1, usuario_sessao);
 			pstm.setString(2, conf.getCor());
 			pstm.setString(3, conf.getInicia_windows());
-			pstm.setString(4, conf.getSnSalario());
-			pstm.setString(5, conf.getSalario());
+
 			pstm.executeUpdate();
 			// JOptionPane.showMessageDialog(null, "Atencão: Bem vindo ao Bat!");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar salvar a configuração" + " Motivo: " + e);
-			System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar inserir configuração");
 		} finally {
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
@@ -87,8 +65,6 @@ public class config {
 			pstm.setString(1, usuario_sessao);
 			pstm.setString(2, conf.getCor());
 			pstm.setString(3, conf.getInicia_windows());
-			pstm.setString(4, conf.getSnSalario());
-			pstm.setString(5, conf.getSalario());
 
 			pstm.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Atencão: Registros atualizados com sucesso!");
@@ -119,12 +95,9 @@ public class config {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
-				return null;
-			} finally {
-				AcessoBD.desconectar(conn11);
-			}
+				//JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+				return "Branco";
+			} 
 
 		}
 		return cor;
@@ -151,68 +124,8 @@ public class config {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				AcessoBD.desconectar(conn11);
-			}
-
-		}
-		return cor;
-
-	}
-	
-	public static String verifica_campo_sn_salario() {
-		{
-
-			String usuario_sessaob = System.getProperty("user.name");
-			String usuario_sessao = "'" + usuario_sessaob + "'";
-			String SELECT_CONFIG_USER = "SELECT sn_salario FROM config_battols where cd_usuario = "+usuario_sessao;
-
-			Connection conn11 = null;
-			Object pstm11;
-			try {
-				conn11 = AcessoBD.conectar();
-				pstm11 = conn11.prepareStatement(SELECT_CONFIG_USER);
-				rs = ((PreparedStatement) pstm11).executeQuery();
-				while (rs.next()) {
-					String valida = rs.getString(1);
-					return valida;
-				}
-
-			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				AcessoBD.desconectar(conn11);
-			}
-
-		}
-		return cor;
-
-	}
-	
-	public static String verifica_campo_salario() {
-		{
-
-			String usuario_sessaob = System.getProperty("user.name");
-			String usuario_sessao = "'" + usuario_sessaob + "'";
-			String SELECT_CONFIG_USER = "SELECT salario FROM config_battols where cd_usuario = "+usuario_sessao;
-
-			Connection conn11 = null;
-			Object pstm11;
-			try {
-				conn11 = AcessoBD.conectar();
-				pstm11 = conn11.prepareStatement(SELECT_CONFIG_USER);
-				rs = ((PreparedStatement) pstm11).executeQuery();
-				while (rs.next()) {
-					String valida = rs.getString(1);
-					return valida;
-				}
-
-			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+				
+				return "erro";
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}
