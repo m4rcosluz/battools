@@ -137,7 +137,7 @@ public class config {
 
 	public static String verifica_campo_sn_salario() {
 		// TODO Auto-generated method stub
-			return "S";
+			return "Sim";
 		
 	}
 
