@@ -70,9 +70,7 @@ public class config {
 			pstm.executeUpdate();
 			// JOptionPane.showMessageDialog(null, "Atencão: Bem vindo ao Bat!");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar salvar a configuração" + " Motivo: " + e);
-			System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 		} finally {
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
@@ -89,7 +87,6 @@ public class config {
 			pstm.setString(3, conf.getInicia_windows());
 			pstm.setString(4, conf.getSnSalario());
 			pstm.setString(5, conf.getSalario());
-
 			pstm.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Atencão: Registros atualizados com sucesso!");
 		} catch (Exception e) {
@@ -146,8 +143,8 @@ public class config {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+				return "0";
+				//JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}
@@ -176,8 +173,7 @@ public class config {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+				//JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}
@@ -206,8 +202,7 @@ public class config {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+				//JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}
