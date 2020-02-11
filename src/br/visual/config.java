@@ -103,7 +103,7 @@ public class config {
 		comboBox.setBounds(10, 98, 107, 20);
 		configBat.getContentPane().add(comboBox);
 		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
-		String salario_user = br.modelo.config.verifica_campo_salario();
+		String salario_user = br.modelo.config.verifica_campo_sn_salario();
 		final JComboBox<Object> comboBox_2 = new JComboBox<Object>(new Object[]{sn_salario_campo,"Sim","Não"});
 		comboBox_2.setBounds(10, 165, 56, 20);
 		configBat.getContentPane().add(comboBox_2);
@@ -219,7 +219,7 @@ public class config {
 						br.modelo.config conf=new br.modelo.config();
 						conf.setCor(cor);
 						conf.setSnSalario(sn_salario);
-						conf.setSalario(salario_user);
+						conf.setSnSalario(salario_user);
 						conf.setInicia_windows(inicia_windows);
 						br.modelo.config.update_config(conf);
 						
