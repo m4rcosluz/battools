@@ -15,9 +15,6 @@ public class IN_UP_DEL_Cliente {
 	String usuario_sessao = System.getProperty("user.name");
 	private final static String INSERT=" INSERT INTO cliente_contato(cd_contato, nm_contato, cd_cliente, cd_usuario, dt_gravacao, cd_ramal)VALUES(?,?,?,?,sysdate,?)";
 	
-	
-	
-	
 	public void insere_cliente(Cliente cli){
 		
 		
@@ -44,9 +41,6 @@ public class IN_UP_DEL_Cliente {
 		
 		try {
 			
-			
-			
-			
 			String usuario_sessao = System.getProperty("user.name");
 			conn=AcessoBD.conectar();
 			pstm=conn.prepareStatement(INSERT);
@@ -66,7 +60,6 @@ public class IN_UP_DEL_Cliente {
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
 	}
-	
 
 		public static void update_nome_cx_alta(Empregado emp){
 			try {
@@ -81,12 +74,6 @@ public class IN_UP_DEL_Cliente {
 			}
 		}
 	
-	
-	
 
-
-	
-
-	
 	
 }

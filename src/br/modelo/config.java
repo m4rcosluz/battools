@@ -70,7 +70,7 @@ public class config {
 			pstm.executeUpdate();
 			// JOptionPane.showMessageDialog(null, "Atencão: Bem vindo ao Bat!");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 		} finally {
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
@@ -90,7 +90,7 @@ public class config {
 			pstm.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Atencão: Registros atualizados com sucesso!");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Atenção: Erro ao conectar com o banco de dados.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 		} finally {
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
@@ -179,7 +179,7 @@ public class config {
 			}
 
 		}
-		return cor;
+		return null;
 
 	}
 	

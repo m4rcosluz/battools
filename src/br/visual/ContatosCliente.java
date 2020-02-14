@@ -1,24 +1,14 @@
 package br.visual;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-
-import br.controle.AcessoBD;
-
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 public class ContatosCliente {
@@ -81,19 +71,10 @@ public class ContatosCliente {
 			frmContatosCliente.getContentPane().setBackground(Color.BLACK);
 		}
 		String usuario_sessao = System.getProperty("user.name");
-		String usuario_dir = System.getProperty("user.dir");
-		System.out.println(usuario_dir);
-		//frmHome.setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/img/46-464234_computador-da-apple-desenho-clipart-laptop-macbook-pantalla.png")));
 		frmContatosCliente.setTitle("Contatos Cliente - 1.0 | Marcos Luz - Bat tools");
-
 		frmContatosCliente.setBounds(500, 100, 450, 300);
 		frmContatosCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JButton btnNewButton = new JButton("Buscar Contatos");
-		//btnNewButton.setForeground(Color.GRAY);
-		//btnNewButton.setVerticalAlignment(SwingConstants.TOP);
-		//btnNewButton.setIcon(new ImageIcon("J:\\SERVER\\Icons\\Icon_GERENCIADOR_DIVIDAS.ico"));
-		//btnNewButton.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));
-		//btnNewButton.setBackground(SystemColor.info);
+		JButton btnNewButton = new JButton("Buscar Contatos");	
 		btnNewButton.addActionListener(  
 				   new ActionListener(){  
 					      public void actionPerformed(ActionEvent evento){  
@@ -113,10 +94,7 @@ public class ContatosCliente {
 		        
 			}
 		});
-		//btnCalcularHoraExtra.setVerticalAlignment(SwingConstants.TOP);
-		//btnCalcularHoraExtra.setForeground(Color.GRAY);
-		//btnCalcularHoraExtra.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));
-		//btnCalcularHoraExtra.setBackground(SystemColor.info);
+		
 		
 		JLabel lblTeste = new JLabel("Bem-Vindo "+usuario_sessao);
 		lblTeste.setFont(new Font("Papyrus", Font.BOLD, 15));
@@ -128,22 +106,6 @@ public class ContatosCliente {
 				frmContatosCliente.setVisible(false);
 			}
 		});
-		//btnVoltar.setVerticalAlignment(SwingConstants.TOP);
-		//btnVoltar.setForeground(Color.GRAY);
-		//btnVoltar.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));
-		//btnVoltar.setBackground(SystemColor.info);
-		
-
-		
-		
-		
-		
-		
-		
-//		textField = new JTextField();
-//		textField.setColumns(10);
-		
-		//JRadioButton rdbtnDescontoVem = new JRadioButton("Desconto VEM");
 		
 
 		GroupLayout groupLayout = new GroupLayout(frmContatosCliente.getContentPane());

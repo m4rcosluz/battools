@@ -1,15 +1,9 @@
 package br.modelo;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import javax.swing.JOptionPane;
-
 import br.controle.AcessoBD;
-
 public class gravaLog {
-	
 public String getUsuario() {
 		return usuario;
 	}

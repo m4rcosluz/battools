@@ -1,11 +1,9 @@
 package br.visual;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -15,11 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-
 import br.controle.ValidaLetras;
-
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
 import java.awt.event.KeyAdapter;
@@ -83,15 +77,13 @@ public class Decimo_terceiro {
 		if (cor.equals("Preto")) {
 			frmDecimoTerceiro.getContentPane().setBackground(Color.BLACK);
 		}
-		// frmDecimoTerceiro.setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/img/46-464234_computador-da-apple-desenho-clipart-laptop-macbook-pantalla.png")));
 		frmDecimoTerceiro.setTitle("Decimo Terceiro - 1.0 | Marcos Luz - Bat tools");
-
 		frmDecimoTerceiro.setBounds(500, 100, 450, 317);
 		frmDecimoTerceiro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JLabel lblSalrio = new JLabel("Sal\u00E1rio:");
 
-		final JComboBox comboBox = new JComboBox<Object>(
+		final JComboBox<Object> comboBox = new JComboBox<Object>(
 				new Object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
 		// JTextField txt_salario = new JTextField();
 		final JTextField txt_salario = new JTextField();
@@ -122,20 +114,12 @@ public class Decimo_terceiro {
 		text2parcela.setText("R$ " + 0.00);
 		text2parcela.setEnabled(false);
 		JButton btnNewButton = new JButton("CALCULAR");
-		// btnNewButton.setForeground(Color.GRAY);
-		// btnNewButton.setVerticalAlignment(SwingConstants.TOP);
-		// btnNewButton.setIcon(new
-		// ImageIcon("J:\\SERVER\\Icons\\Icon_GERENCIADOR_DIVIDAS.ico"));
-		// btnNewButton.setFont(new Font("Segoe UI Black", Font.PLAIN, 12));
-		// btnNewButton.setBackground(SystemColor.info);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuario_sessao = System.getProperty("user.name");
 				System.out.println("Olá " + usuario_sessao);
 
-				// FORMULA : (salário / 12) x meses trabalhados
-
-				// VALIDA CAMPO VAZIO
+	
 				if (txt_salario.getText().trim().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Atenção: Campo salário não pode ser vazio.", "Atenção",
 							JOptionPane.WARNING_MESSAGE);

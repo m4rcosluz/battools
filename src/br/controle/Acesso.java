@@ -39,8 +39,7 @@ public class Acesso {
 			((PreparedStatement) pstm).executeUpdate();
 
 		} catch (Exception e) {
-			System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-			e.printStackTrace();
+			
 		}finally{
 			AcessoBD.desconectar(conn, pstm, rs);
 		}
@@ -64,8 +63,7 @@ public class Acesso {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+				
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}
@@ -92,8 +90,7 @@ public class Acesso {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+				
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}
@@ -120,8 +117,7 @@ public class Acesso {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
+			
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}

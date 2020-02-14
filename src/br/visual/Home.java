@@ -1,42 +1,18 @@
 package br.visual;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.ArrayList;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import br.controle.Acesso;
-import br.controle.AcessoBD;
-import br.modelo.Cliente;
-import br.modelo.IN_UP_DEL_Cliente;
 import br.modelo.gravaLog;
-
 import java.awt.Font;
-import java.awt.List;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 public class Home {
 
 	protected static final Object Resultado = null;
@@ -91,16 +67,14 @@ public class Home {
 	
 		String acesso_geral = Acesso.verifica_acesso_geral();
 		String acesso_user = Acesso.verifica_acesso_user();
-		String ultimo_acesso = Acesso.verifica_ultimo_acesso();
-		System.out.print(acesso_geral);
+
 		
 		frmHome = new JFrame();
 		frmHome.setAutoRequestFocus(false);
-		
 
 		
 		String cor = br.modelo.config.define_cor(null);
-
+		
 
 		if (cor.equals("Azul")) {
 			frmHome.getContentPane().setBackground(Color.BLUE);
@@ -122,15 +96,15 @@ public class Home {
 			frmHome.getContentPane().setBackground(Color.BLACK);
 		}
 		
-
-
-
-			
+		
+		//String acesso_geral = "1";
+		//String acesso_user = "1";
 	
 
 		String usuario_dir = System.getProperty("user.dir");
 		System.out.println(usuario_dir);
 
+		
 		frmHome.setTitle("Tela Inicial - 1.0 | Marcos Luz - Bat tools");
 
 		frmHome.setBounds(500, 100, 450, 300);
@@ -161,6 +135,9 @@ public class Home {
 			}
 		});
 
+		JLabel lblTeste = new JLabel("Bat Tools");
+		lblTeste.setFont(new Font("Papyrus", Font.BOLD, 15));
+
 		JButton btnContatoDeClientes = new JButton("Contato de Clientes");
 		btnContatoDeClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -189,10 +166,11 @@ public class Home {
 				gravaLog.insere_log(Log);
 				Aplicativos.main(null);
 				frmHome.setVisible(false);
+				}
 			}
-		});
+		);
 
-		JButton btnConfigurao = new JButton("Personaliza\u00E7\u00E3o");
+		JButton btnConfigurao = new JButton("Config.");
 		btnConfigurao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gravaLog Log=new gravaLog();
@@ -211,53 +189,51 @@ public class Home {
 		
 		JLabel lblSeusAcessosNull = new JLabel("Seus acessos: "+acesso_geral);
 		lblSeusAcessosNull.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
-		JLabel lblltimoLogin = new JLabel("\u00DAltimo Login: "+ultimo_acesso);
-		lblltimoLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		GroupLayout groupLayout = new GroupLayout(frmHome.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(164)
-					.addComponent(btnConfigurao)
-					.addContainerGap(167, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnContatoDeClientes, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-							.addComponent(btnAplicativos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-					.addGap(42))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(353, Short.MAX_VALUE)
-					.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblSeusAcessosNull)
-					.addContainerGap(337, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblltimoLogin, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(btnContatoDeClientes, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+										.addComponent(btnAplicativos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
+								.addGap(42))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblSeusAcessosNull)
+									.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
+								.addGap(39)
+								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(27, Short.MAX_VALUE)))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnConfigurao)
+							.addContainerGap())))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lbAcesso)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblltimoLogin, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-					.addGap(23)
-					.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbAcesso)
+								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
