@@ -61,7 +61,7 @@ public class IN_UP_DEL_Cliente {
 		}
 	}
 
-		public static void update_nome_cx_alta(Empregado emp){
+		public static void update_nome_cx_alta(Cliente emp){
 			try {
 				conn=AcessoBD.conectar();
 				pstm=conn.prepareStatement("UPDATE cliente_contato SET nm_contato = Upper(nm_contato)");

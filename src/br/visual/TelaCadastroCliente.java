@@ -12,8 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.modelo.Cliente;
-import br.modelo.Empregado;
-import br.modelo.EmpregadoDAO;
 import br.modelo.IN_UP_DEL_Cliente;
 import br.modelo.gravaLog;
 import br.controle.AcessoBD;
@@ -24,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -32,6 +31,7 @@ public class TelaCadastroCliente {
 	protected static final Object Resultado = null;
 	protected static final String String = null;
 	protected static final boolean True = false;
+	protected static final java.lang.String SELECT_CONFIG_USER = null;
 	private JFrame frmCadastroCli;
 	private JTextField textId;
 	private JTextField textNome;
@@ -114,6 +114,37 @@ public class TelaCadastroCliente {
 		textNome.setColumns(10);
 		//BOTOES
 		final JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(textId.getText().trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Atenção: Campo Skype não pode ser vazio.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+					return;
+					}
+				String contato = textCd_cliente.getText();
+				String SELECT_COR="select nm_contato, cd_cliente, cd_ramal from cliente_contato where cd_contato = "+contato;
+				
+				Connection conn1 = null;
+					Object pstm1;
+					try {
+						conn1=AcessoBD.conectar();
+						pstm1=conn1.prepareStatement(SELECT_CONFIG_USER);
+						ResultSet rs = ((PreparedStatement) pstm1).executeQuery();
+						while (rs.next()) {
+							textNome.setText(rs.getString(1));
+							textCd_cliente.setText(rs.getString(2));
+							textRamal.setText(rs.getString(3));
+							} 
+							
+	
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Atenção: Conexão com o banco de dados não foi estabelecida.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+						return;
+					}finally{
+						AcessoBD.desconectar(conn1);
+					}
+				
+			}
+		});
 		btnNewButton.setVisible(false);
 		final JButton btnCadastrar = new JButton("Cadastrar");
 		final JButton btnAlterao = new JButton("Altera\u00E7\u00E3o");
@@ -186,7 +217,6 @@ public class TelaCadastroCliente {
 				cli.setCd_ramal(ramal);
 				cli_IN_UP_DEL.insere_cliente(cli);
 				IN_UP_DEL_Cliente.update_nome_cx_alta(null);
-				
 				gravaLog Log=new gravaLog();
 				Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
 				gravaLog.insere_log(Log);
