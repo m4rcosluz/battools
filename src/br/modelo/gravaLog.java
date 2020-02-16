@@ -27,7 +27,7 @@ private String funcao;
 private String dh_log;
 
 
-public static void insere_log(gravaLog log){
+public static String insere_log(gravaLog log){
 	Connection conn = null;
 	PreparedStatement pstm = null;
 	ResultSet rs = null;
@@ -39,8 +39,10 @@ public static void insere_log(gravaLog log){
 		((PreparedStatement) pstm).setString(1, usuario_sessao);
 		((PreparedStatement) pstm).setString(2, log.getFuncao());
 		((PreparedStatement) pstm).executeUpdate();
+		return "Ok";
 
 	} catch (Exception e) {
+		return "Erro";
 		//JOptionPane.showMessageDialog(null, "Atenção: A aplicação pode não funcionar por completa, não",  "Atenção", JOptionPane.WARNING_MESSAGE);
 	}finally{
 		AcessoBD.desconectar(conn, pstm, rs);

@@ -303,7 +303,4 @@ public class Decimo_terceiro {
 		frmDecimoTerceiro.getContentPane().setLayout(groupLayout);
 	}
 
-	public void Abri_hora_extra(boolean b) {
-		frmDecimoTerceiro.setVisible(true);
-	}
 }

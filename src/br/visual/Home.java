@@ -64,9 +64,14 @@ public class Home {
 		gravaLog.insere_log(Log);
 		
 		Acesso.insere_acesso(null);
-	
+		String status = gravaLog.insere_log(null);
 		String acesso_geral = Acesso.verifica_acesso_geral();
 		String acesso_user = Acesso.verifica_acesso_user();
+		
+		if(acesso_geral == null) {acesso_geral = "0";}
+		if(acesso_user == null) {acesso_user = "0";}
+		
+		
 
 		
 		frmHome = new JFrame();
@@ -180,15 +185,16 @@ public class Home {
 				frmHome.setVisible(false);
 			}
 		});
-
-		JLabel lblV = new JLabel("v20.01.23");
-		lblV.setFont(new Font("Papyrus", Font.BOLD, 15));
 		
 		JLabel lbAcesso = new JLabel("Acessos: "+acesso_user);
 		lbAcesso.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
+		
 		JLabel lblSeusAcessosNull = new JLabel("Seus acessos: "+acesso_geral);
 		lblSeusAcessosNull.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JLabel lblStatus = new JLabel("Status: "+status);
+		if(status.contentEquals("Ok")) {lblStatus.setForeground(Color.GREEN);} else {lblStatus.setForeground(Color.RED);}
 
 		GroupLayout groupLayout = new GroupLayout(frmHome.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -201,38 +207,37 @@ public class Home {
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 									.addGroup(groupLayout.createSequentialGroup()
 										.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+										.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
 										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
 									.addGroup(groupLayout.createSequentialGroup()
 										.addComponent(btnContatoDeClientes, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+										.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
 										.addComponent(btnAplicativos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
 								.addGap(42))
 							.addGroup(groupLayout.createSequentialGroup()
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblSeusAcessosNull)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(lblSeusAcessosNull)
+										.addGap(48)
+										.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+										.addGap(33)
+										.addComponent(lblStatus))
 									.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
-								.addGap(39)
-								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(27, Short.MAX_VALUE)))
+								.addGap(86)))
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnConfigurao)
-							.addContainerGap())))
+							.addGap(30))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lbAcesso)
-								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblV, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblStatus))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(lbAcesso)
 					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)

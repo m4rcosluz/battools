@@ -90,6 +90,8 @@ public class IN_UP_DEL_Cliente {
 				pstm.setString(2, cli.getCd_cliente());
 				pstm.setString(3, cli.getCd_ramal());
 				pstm.executeUpdate();
+				JOptionPane.showMessageDialog(null, "Atenção: Dados alterados com sucesso!.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+				
 			} catch (Exception e) {
 				System.err.println("Ocorreu um erro, causa:"+e.getMessage());
 				e.printStackTrace();
