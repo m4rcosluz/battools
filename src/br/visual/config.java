@@ -167,8 +167,8 @@ public class config {
 							
 	
 					} catch (Exception e) {
-						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-						e.printStackTrace();
+						//System.err.println("Ocorreu um erro, causa:"+e.getMessage());
+						//e.printStackTrace();
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
@@ -184,15 +184,20 @@ public class config {
 							
 	
 					} catch (Exception e) {
-						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-						e.printStackTrace();
+						//System.err.println("Ocorreu um erro, causa:"+e.getMessage());
+					//	e.printStackTrace();
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
 				
+					if (textField.getText().trim().isEmpty()) {
+						textField.setText("0");
+						}
 					
 					String result = textField.getText();
-					double valida = Double.parseDouble(result);
+					
+					
+					double valida = Double.parseDouble(result); 
 					
 					if(valida < 1){
 						Log.setFuncao("Inseriu configuração - Config");
