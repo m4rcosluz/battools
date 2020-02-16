@@ -279,7 +279,7 @@ public class TelaCadastroCliente {
 					cli_IN_UP_DEL.altera_cadastro_cliente(cli);
 					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
 					gravaLog Log=new gravaLog();
-					Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
+					Log.setFuncao("Alterou o contato : "+id+" Cliente : "+cliente);
 					gravaLog.insere_log(Log);
 				}
 			}
