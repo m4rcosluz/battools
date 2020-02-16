@@ -113,8 +113,13 @@ public class TelaCadastroCliente {
 		textNome = new JTextField();
 		textNome.setColumns(10);
 		//BOTOES
-		final JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.addActionListener(new ActionListener() {
+		final JButton btnCadastrar = new JButton("Cadastrar");
+		final JButton btnBuscar = new JButton("Buscar");
+		final JButton btnAlterao = new JButton("Altera\u00E7\u00E3o");
+		final JButton btnCadastr = new JButton("Cadastro");
+		JButton btnLimpar = new JButton("Limpar");
+		
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(textId.getText().trim().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Atenção: Campo Skype não pode ser vazio.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -142,22 +147,49 @@ public class TelaCadastroCliente {
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
+			
 				
-			}
+				
+				/*textNome.setText("Marcos");
+				textCd_cliente.setText("1212");
+				textRamal.setText("1072");*/
+				
+				if(textNome.getText().trim().isEmpty()){
+					textNome.enable(false);
+					textCd_cliente.enable(false);
+					textRamal.enable(false);
+					btnCadastrar.setEnabled(false);
+					JOptionPane.showMessageDialog(null, "Atenção: Não foi encontrado nenhum contato com esse Skype.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+					return;
+					
+				} else {
+					textNome.enable(true);
+					textCd_cliente.enable(true);
+					textRamal.enable(true);
+					btnCadastrar.setEnabled(true);
+					textId.enable(false);
+				}
+			} 
 		});
-		btnNewButton.setVisible(false);
-		final JButton btnCadastrar = new JButton("Cadastrar");
-		final JButton btnAlterao = new JButton("Altera\u00E7\u00E3o");
-		final JButton btnCadastr = new JButton("Cadastro");
+		btnBuscar.setVisible(false);
+		//final JButton btnCadastrar = new JButton("Cadastrar");
+		
 		btnCadastr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCadastrar.setText("Cadastrar");
 				btnCadastr.setEnabled(false);
 				btnAlterao.setEnabled(true);
-				btnNewButton.setVisible(false);
+				btnBuscar.setVisible(false);
 				textCd_cliente.setEnabled(true);
 				textNome.setEnabled(true);
 				textRamal.setEnabled(true);
+				btnCadastrar.setEnabled(true);
+				textCd_cliente.setText("");
+				textNome.setText("");
+				textRamal.setText("");
+				textId.setText("");
+				textId.enable(true);
+				
 			}
 		});
 		
@@ -167,10 +199,15 @@ public class TelaCadastroCliente {
 				btnCadastrar.setText("Alterar");
 				btnAlterao.setEnabled(false);
 				btnCadastr.setEnabled(true);
-				btnNewButton.setVisible(true);
+				btnBuscar.setVisible(true);
 				textCd_cliente.setEnabled(false);
 				textNome.setEnabled(false);
 				textRamal.setEnabled(false);
+				btnCadastrar.setEnabled(false);
+				textCd_cliente.setText("");
+				textNome.setText("");
+				textRamal.setText("");
+				textId.setText("");
 			}
 		});
 		
@@ -183,6 +220,11 @@ public class TelaCadastroCliente {
 		//JButton btnCadastrar = new JButton("Salvar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				String Operacao = btnCadastrar.getText();
+				
+				System.out.println(Operacao);
+				
 				if(textCd_cliente.getText().trim().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Atenção: Campo Cliente não pode ser vazio.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 					return;
@@ -203,24 +245,43 @@ public class TelaCadastroCliente {
 					textRamal.setText("0");
 					}
 
-				IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
-				Cliente cli=new Cliente();
-				 
 				String id = textId.getText();
 				String nome = textNome.getText();
 				String cliente = textCd_cliente.getText();
 				String ramal = textRamal.getText();
 				
-				cli.setCd_contato(id);
-				cli.setNm_contato(nome);
-				cli.setCd_cliente(cliente);
-				cli.setCd_ramal(ramal);
-				cli_IN_UP_DEL.insere_cliente(cli);
-				IN_UP_DEL_Cliente.update_nome_cx_alta(null);
-				gravaLog Log=new gravaLog();
-				Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
-				gravaLog.insere_log(Log);
 				
+				if(Operacao.contentEquals("Cadastrar")) {
+					IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
+					Cliente cli=new Cliente();
+		
+				
+					cli.setCd_contato(id);
+					cli.setNm_contato(nome);
+					cli.setCd_cliente(cliente);
+					cli.setCd_ramal(ramal);
+					cli_IN_UP_DEL.insere_cliente(cli);
+					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
+					gravaLog.insere_log(Log);
+				}
+				
+				if(Operacao.contentEquals("Alterar")) {
+					IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
+					Cliente cli=new Cliente();
+				 
+				
+					cli.setCd_contato(id);
+					cli.setNm_contato(nome);
+					cli.setCd_cliente(cliente);
+					cli.setCd_ramal(ramal);
+					cli_IN_UP_DEL.altera_cadastro_cliente(cli);
+					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
+					gravaLog Log=new gravaLog();
+					Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
+					gravaLog.insere_log(Log);
+				}
 			}
 		});
 		
@@ -249,7 +310,19 @@ public class TelaCadastroCliente {
 		JLabel lblRamal = new JLabel("Ramal :");
 		lblRamal.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
+
 		
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textId.setText("");
+				textNome.setText("");
+				textRamal.setText("");
+				textCd_cliente.setText("");
+				textId.setText("");
+				textId.setEnabled(true);
+			}
+		});
+				
 
 		GroupLayout groupLayout = new GroupLayout(frmCadastroCli.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -257,24 +330,41 @@ public class TelaCadastroCliente {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addGap(110)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(112)
-									.addComponent(btnCadastrar)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+									.addGap(2)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnCadastrar)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+											.addGap(13))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(btnCadastr, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(btnAlterao, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(221)
+									.addComponent(btnLimpar)
+									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addContainerGap()
-											.addComponent(textId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(textNome, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGap(34)
 											.addComponent(lblSkype)
 											.addGap(64)
-											.addComponent(lblNome)))
+											.addComponent(lblNome))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addContainerGap()
+											.addComponent(textId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(btnBuscar)
+												.addComponent(textNome, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblCdCliente, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
@@ -285,19 +375,7 @@ public class TelaCadastroCliente {
 									.addComponent(textRamal, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(38)
-									.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(110)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnCadastr, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnAlterao, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(162)
-							.addComponent(btnNewButton)))
+									.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)))))
 					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -321,11 +399,15 @@ public class TelaCadastroCliente {
 						.addComponent(textCd_cliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textRamal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnLimpar)
+						//.addComponent(btnBuscar.BASELINE)
+						.addComponent(btnLimpar)
+						.addComponent(btnBuscar))
 					.addGap(25)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCadastrar)
-						.addComponent(btnVoltar))
+						.addComponent(btnVoltar)
+						.addComponent(btnCadastrar))
 					.addGap(50))
 		);
 		frmCadastroCli.getContentPane().setLayout(groupLayout);
