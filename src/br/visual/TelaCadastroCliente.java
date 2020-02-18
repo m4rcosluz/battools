@@ -125,34 +125,36 @@ public class TelaCadastroCliente {
 					JOptionPane.showMessageDialog(null, "Atenção: Campo Skype não pode ser vazio.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 					return;
 					}
-				String contato = textCd_cliente.getText();
-				String SELECT_COR="select nm_contato, cd_cliente, cd_ramal from cliente_contato where cd_contato = "+contato;
+				String contato = textId.getText();
+				
+				String SELECT_CON="select nm_contato, cd_cliente, cd_ramal from cliente_contato where cd_contato = "+"'"+contato+"'";
+				
 				
 				Connection conn1 = null;
 					Object pstm1;
 					try {
 						conn1=AcessoBD.conectar();
-						pstm1=conn1.prepareStatement(SELECT_CONFIG_USER);
+						pstm1=conn1.prepareStatement(SELECT_CON);
 						ResultSet rs = ((PreparedStatement) pstm1).executeQuery();
 						while (rs.next()) {
+							
 							textNome.setText(rs.getString(1));
 							textCd_cliente.setText(rs.getString(2));
-							textRamal.setText(rs.getString(3));
-							} 
+							textRamal.setText(rs.getString(3));							} 
 							
 	
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Atenção: Conexão com o banco de dados não foi estabelecida.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Atenção: Conexão com o banco de dados não foi estabelecida. motivo"+e,  "Atenção", JOptionPane.WARNING_MESSAGE);
 						return;
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
 			
+			/*
 				
-				
-				/*textNome.setText("Marcos");
+				textNome.setText("Marcos");
 				textCd_cliente.setText("1212");
-				textRamal.setText("1072");*/
+				textRamal.setText("1072");  */
 				
 				if(textNome.getText().trim().isEmpty()){
 					textNome.enable(false);
@@ -268,15 +270,13 @@ public class TelaCadastroCliente {
 				}
 				
 				if(Operacao.contentEquals("Alterar")) {
-					IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
-					Cliente cli=new Cliente();
-				 
-				
+					IN_UP_DEL_Cliente cli=new IN_UP_DEL_Cliente();
+					//Cliente cli=new Cliente();
 					cli.setCd_contato(id);
 					cli.setNm_contato(nome);
 					cli.setCd_cliente(cliente);
 					cli.setCd_ramal(ramal);
-					cli_IN_UP_DEL.altera_cadastro_cliente(cli);
+					IN_UP_DEL_Cliente.altera_cadastro_cliente(cli);
 					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
 					gravaLog Log=new gravaLog();
 					Log.setFuncao("Alterou o contato : "+id+" Cliente : "+cliente);
@@ -314,12 +314,22 @@ public class TelaCadastroCliente {
 		
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String Operacao = btnCadastrar.getText();
 				textId.setText("");
 				textNome.setText("");
 				textRamal.setText("");
 				textCd_cliente.setText("");
 				textId.setText("");
 				textId.setEnabled(true);
+					if(Operacao.contentEquals("Alterar")) {
+						textNome.enable(false);
+						textCd_cliente.enable(false);
+						textRamal.enable(false);
+					} else {						
+					textNome.enable(true);
+					textCd_cliente.enable(true);
+					textRamal.enable(true);
+					}
 			}
 		});
 				

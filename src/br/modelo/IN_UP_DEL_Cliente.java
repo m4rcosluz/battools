@@ -14,6 +14,9 @@ public class IN_UP_DEL_Cliente {
 	private static ResultSet rs;
 	static String usuario_sessao = System.getProperty("user.name");
 	private final static String INSERT=" INSERT INTO cliente_contato(cd_contato, nm_contato, cd_cliente, cd_usuario, dt_gravacao, cd_ramal)VALUES(?,?,?,?,sysdate,?)";
+	private String cd_contato;
+	private String nm_contato;
+	private String cd_ramal;
 	
 	public void insere_cliente(Cliente cli){
 		
@@ -81,7 +84,7 @@ public class IN_UP_DEL_Cliente {
 	}
 		
 		
-		public static void altera_cadastro_cliente (Cliente cli){
+		public static void altera_cadastro_cliente (IN_UP_DEL_Cliente cli){
 			try {
 				String skype = cli.getCd_contato();
 				conn=AcessoBD.conectar();
@@ -98,6 +101,34 @@ public class IN_UP_DEL_Cliente {
 			}finally{
 				AcessoBD.desconectar(conn, pstm, rs);
 			}
+		}
+
+		public String getCd_contato() {
+			return getCd_contato();
+		}
+		public void setCd_contato(String string) {
+			this.cd_contato = string;
+		}
+		public String getNm_contato() {
+			return getNm_contato();
+		}
+		public void setNm_contato(String nm_contato) {
+			this.nm_contato = nm_contato;
+		}
+		public String getCd_cliente() {
+			return cd_contato;
+		}
+		public void setCd_cliente(String cd_cliente) {
+			this.cd_contato = cd_cliente;
+		}
+		
+		public String getCd_ramal() {
+			return getCd_ramal();
+		}
+		
+		public void setCd_ramal(String cd_ramal) {
+			this.cd_ramal = cd_ramal;
+			
 		}
 	
 
