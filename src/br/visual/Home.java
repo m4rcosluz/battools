@@ -59,20 +59,23 @@ public class Home {
 			br.modelo.config.insere_config(conf);
 		}
 		
+	
 		gravaLog Log=new gravaLog();
 		Log.setFuncao("Entrou na página home.");
 		gravaLog.insere_log(Log);
+		String status = gravaLog.insere_log(Log);
 		
+
 		Acesso.insere_acesso(null);
-		String status = gravaLog.insere_log(null);
+		//String status = gravaLog.insere_log(null);
 		String acesso_geral = Acesso.verifica_acesso_geral();
 		String acesso_user = Acesso.verifica_acesso_user();
+		
 		
 		if(acesso_geral == null) {acesso_geral = "0";}
 		if(acesso_user == null) {acesso_user = "0";}
 		
 		
-
 		
 		frmHome = new JFrame();
 		frmHome.setAutoRequestFocus(false);

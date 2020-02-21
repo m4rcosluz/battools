@@ -144,7 +144,7 @@ public class TelaCadastroCliente {
 							
 	
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Atenção: Conexão com o banco de dados não foi estabelecida. motivo"+e,  "Atenção", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Atenção: Erro na consulta, motivo: "+e,  "Atenção", JOptionPane.ERROR_MESSAGE);
 						return;
 					}finally{
 						AcessoBD.desconectar(conn1);
