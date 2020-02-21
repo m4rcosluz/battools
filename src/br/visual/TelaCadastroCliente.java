@@ -277,7 +277,7 @@ public class TelaCadastroCliente {
 					cli1.setCd_cliente(cliente);
 					cli1.setCd_ramal(ramal);
 					IN_UP_DEL_Cliente.altera_cadastro_cliente(cli1);
-					//IN_UP_DEL_Cliente.update_nome_cx_alta(null);
+					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
 					gravaLog Log=new gravaLog();
 					Log.setFuncao("Alterou o contato : "+id+" Cliente : "+cliente);
 					gravaLog.insere_log(Log);

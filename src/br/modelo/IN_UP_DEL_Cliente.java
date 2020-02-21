@@ -68,11 +68,6 @@ public class IN_UP_DEL_Cliente {
 		try {
 			conn=AcessoBD.conectar();
 			pstm=conn.prepareStatement("UPDATE cliente_contato SET nm_contato = Upper(nm_contato)");
-			pstm.setString(1, cli.getCd_contato());
-			pstm.setString(2, cli.getNm_contato());
-			pstm.setString(3, cli.getCd_cliente());
-			pstm.setString(4, usuario_sessao);
-			pstm.setString(5, cli.getCd_ramal());
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			System.err.println("Ocorreu um erro, causa:"+e.getMessage());
