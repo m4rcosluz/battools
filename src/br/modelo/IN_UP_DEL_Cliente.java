@@ -68,11 +68,6 @@ public class IN_UP_DEL_Cliente {
 		try {
 			conn=AcessoBD.conectar();
 			pstm=conn.prepareStatement("UPDATE cliente_contato SET nm_contato = Upper(nm_contato)");
-			pstm.setString(1, cli.getCd_contato());
-			pstm.setString(2, cli.getNm_contato());
-			pstm.setString(3, cli.getCd_cliente());
-			pstm.setString(4, usuario_sessao);
-			pstm.setString(5, cli.getCd_ramal());
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			System.err.println("Ocorreu um erro, causa:"+e.getMessage());
@@ -84,11 +79,11 @@ public class IN_UP_DEL_Cliente {
 	}
 		
 		
-		public static void altera_cadastro_cliente (IN_UP_DEL_Cliente cli){
+		public static void altera_cadastro_cliente (Cliente cli){
 			try {
 				String skype = cli.getCd_contato();
 				conn=AcessoBD.conectar();
-				pstm=conn.prepareStatement("UPDATE cliente_contato set nm_contato=?, cd_cliente=?, cd_ramal=? where cd_contato = "+skype);
+				pstm=conn.prepareStatement("UPDATE cliente_contato set nm_contato=?, cd_cliente=?, cd_ramal=? where cd_contato = "+"'"+skype+"'");
 				pstm.setString(1, cli.getNm_contato());
 				pstm.setString(2, cli.getCd_cliente());
 				pstm.setString(3, cli.getCd_ramal());
