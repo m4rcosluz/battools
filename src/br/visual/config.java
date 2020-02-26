@@ -1,29 +1,23 @@
 package br.visual;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.SwingConstants;
-
-import br.controle.AcessoBD;
-import br.modelo.*;
+import java.awt.EventQueue;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import br.controle.AcessoBD;
+import br.modelo.gravaLog;
 public class config {
 
 	protected static final Object Rosa = null;
@@ -33,6 +27,7 @@ public class config {
 	private JTextField textField;
 	private JTextField campoCor;
 	private JTextField txtSalario;
+	private JTextField textCheat;
 
 	/**
 	 * Launch the application.
@@ -148,6 +143,14 @@ public class config {
 				
 				String teste = br.modelo.config.define_cor(null);
 				System.out.print(teste);
+				
+			String cheat = textCheat.getText();	
+			if(cheat.contentEquals("log")) {
+				
+				VisualizaLog.main(null);
+				configBat.setVisible(false);
+				return;
+			}
 				
 			String usuario_sessaob = System.getProperty("user.name");
 				String usuario_sessao = "'"+usuario_sessaob+"'";
@@ -321,6 +324,15 @@ public class config {
 		configBat.getContentPane().add(lblSalrio);
 		
 		configBat.getContentPane().add(txtSalario);
+		
+		textCheat = new JTextField();
+		textCheat.setBounds(10, 58, 86, 20);
+		configBat.getContentPane().add(textCheat);
+		textCheat.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Cheat's");
+		lblNewLabel.setBounds(29, 42, 46, 14);
+		configBat.getContentPane().add(lblNewLabel);
 
 	}
 		
