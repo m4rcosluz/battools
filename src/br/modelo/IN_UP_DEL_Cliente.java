@@ -64,19 +64,6 @@ public class IN_UP_DEL_Cliente {
 		}
 	}
 
-	public static void update_nome_cx_alta(Cliente  cli){
-		try {
-			conn=AcessoBD.conectar();
-			pstm=conn.prepareStatement("UPDATE cliente_contato SET nm_contato = Upper(nm_contato)");
-			pstm.executeUpdate();
-		} catch (Exception e) {
-			System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-			e.printStackTrace();
-		}finally{
-			AcessoBD.desconectar(conn, pstm, rs);
-		}
-		
-	}
 		
 		
 		public static void altera_cadastro_cliente (Cliente cli){

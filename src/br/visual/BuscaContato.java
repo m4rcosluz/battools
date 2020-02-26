@@ -144,13 +144,13 @@ public class BuscaContato {
 				String bkpNome = "'%"+Nome+"%'";
 
 				 
-				String SELECT=" SELECT * FROM cliente_conta"+ "to where cd_cliente = "+bkpcodigo_cliente;
+				String SELECT=" SELECT * FROM cliente_conta"+ "to where cd_cliente = "+bkpcodigo_cliente.toUpperCase();
 				
 				
 				if(textCliente.getText().trim().isEmpty()){
-					SELECT="SELECT * FROM cliente_contato where Upper(nm_contato) like "+bkpNome;
+					SELECT="SELECT * FROM cliente_contato where Upper(nm_contato) like "+bkpNome.toUpperCase();
 					gravaLog Log=new gravaLog();
-					Log.setFuncao("Pesquisou pelo contato: "+bkpNome+" - Busca Contato");
+					Log.setFuncao("Pesquisou pelo contato: "+bkpNome.toUpperCase()+" - Busca Contato");
 					gravaLog.insere_log(Log);
 				} 
 
@@ -158,9 +158,9 @@ public class BuscaContato {
 			
 				if(textNome.getText().length() > 0 && textCliente.getText().length() > 0){
 					System.out.println("entrou");
-					SELECT="SELECT * FROM cliente_contato where cd_cliente ="+bkpcodigo_cliente+" and Upper(nm_contato) like "+bkpNome;
+					SELECT="SELECT * FROM cliente_contato where cd_cliente ="+bkpcodigo_cliente+" and Upper(nm_contato) like "+bkpNome.toUpperCase();
 					gravaLog Log=new gravaLog();
-					Log.setFuncao("Pesquisou pelo contato: "+bkpNome +" Cliente: "+ codigo_cliente+" - Busca Contato");
+					Log.setFuncao("Pesquisou pelo contato: "+bkpNome.toUpperCase() +" Cliente: "+ codigo_cliente+" - Busca Contato");
 					gravaLog.insere_log(Log);
 					} 
 				

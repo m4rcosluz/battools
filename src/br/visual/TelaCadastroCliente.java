@@ -256,14 +256,13 @@ public class TelaCadastroCliente {
 				if(Operacao.contentEquals("Cadastrar")) {
 					IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
 					Cliente cli=new Cliente();
-		
+
 				
 					cli.setCd_contato(id);
-					cli.setNm_contato(nome);
+					cli.setNm_contato(nome.toUpperCase());
 					cli.setCd_cliente(cliente);
 					cli.setCd_ramal(ramal);
 					cli_IN_UP_DEL.insere_cliente(cli);
-					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
 					gravaLog Log=new gravaLog();
 					Log.setFuncao("Cadastrou o contato : "+id+" Cliente : "+cliente);
 					gravaLog.insere_log(Log);
@@ -273,11 +272,10 @@ public class TelaCadastroCliente {
 					IN_UP_DEL_Cliente cli=new IN_UP_DEL_Cliente();
 					Cliente cli1=new Cliente();
 					cli1.setCd_contato(id);
-					cli1.setNm_contato(nome);
+					cli1.setNm_contato(nome.toUpperCase());
 					cli1.setCd_cliente(cliente);
 					cli1.setCd_ramal(ramal);
 					IN_UP_DEL_Cliente.altera_cadastro_cliente(cli1);
-					IN_UP_DEL_Cliente.update_nome_cx_alta(null);
 					gravaLog Log=new gravaLog();
 					Log.setFuncao("Alterou o contato : "+id+" Cliente : "+cliente);
 					gravaLog.insere_log(Log);
