@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.controle.AcessoBD;
+import br.controle.ClockLabel;
 import br.modelo.gravaLog;
 public class config {
 
@@ -334,6 +335,8 @@ public class config {
 		JLabel lblNewLabel = new JLabel("Cheat's");
 		lblNewLabel.setBounds(29, 42, 46, 14);
 		configBat.getContentPane().add(lblNewLabel);
+		
+
 
 	}
 		

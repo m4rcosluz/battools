@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import br.controle.Acesso;
+import br.controle.ClockLabel;
 import br.modelo.gravaLog;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ public class Home {
 	protected static final Object Resultado = null;
 	private static final String SELECT_GERAL = null;
 	private JFrame frmHome;
+	private JLabel lblHora_1;
 
 	/**
 	 * Launch the application.
@@ -75,7 +77,7 @@ public class Home {
 		if(acesso_geral == null) {acesso_geral = "0";}
 		if(acesso_user == null) {acesso_user = "0";}
 		
-		
+
 		
 		frmHome = new JFrame();
 		frmHome.setAutoRequestFocus(false);
@@ -198,6 +200,9 @@ public class Home {
 		
 		JLabel lblStatus = new JLabel("Status: "+status);
 		if(status.contentEquals("Ok")) {lblStatus.setForeground(Color.GREEN);} else {lblStatus.setForeground(Color.RED);}
+		
+		JLabel lblHora = new JLabel("New label");
+		lblHora_1 = new ClockLabel();
 
 		GroupLayout groupLayout = new GroupLayout(frmHome.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -205,29 +210,33 @@ public class Home {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(btnContatoDeClientes, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-										.addComponent(btnAplicativos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-								.addGap(42))
-							.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblSeusAcessosNull)
-										.addGap(48)
-										.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-										.addGap(33)
-										.addComponent(lblStatus))
-									.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
-								.addGap(86)))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnCalcularHoraExtra, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnContatoDeClientes, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+									.addComponent(btnAplicativos, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
+							.addGap(42))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblSeusAcessosNull)
+									.addGap(48)
+									.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lbAcesso, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(33)
+									.addComponent(lblStatus))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(12)
+									.addComponent(lblHora_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGap(36))
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnConfigurao)
 							.addGap(30))))
 		);
@@ -239,8 +248,10 @@ public class Home {
 						.addComponent(lblSeusAcessosNull, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTeste, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblStatus))
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(lbAcesso)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lbAcesso)
+						.addComponent(lblHora_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
