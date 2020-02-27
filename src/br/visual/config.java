@@ -230,7 +230,6 @@ public class config {
 					
 				String cor1 = ((String) comboBox.getSelectedItem());	
 				String inicia_windows = (String) comboBox_1.getSelectedItem(); 
-				
 				String salario_user = ((String) comboBox_2.getSelectedItem());	
 				
 				if(salario_user.equals("Sim")) {
@@ -238,11 +237,13 @@ public class config {
 				} else {
 					txtSalario.setEnabled(false);
 					} 
-
 				
-				if(inicia_windows.equals ("Sim")){
+				String usuario_dir = System.getProperty("user.dir")+"\\Services";
+				System.out.println(usuario_dir+"\\instala_inicializar.bat");
+				
+				if(inicia_windows.contentEquals("Sim")){
 					try {
-						Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\BAT_JAVA\\src\\br\\controle\\instala_inicializar.bat");
+						Runtime.getRuntime().exec(usuario_dir+"\\instala_inicializar.bat");
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar mover o bat para a inicialização do S.O.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 						
@@ -250,9 +251,9 @@ public class config {
 					
 				} else {
 					try {
-						Runtime.getRuntime().exec("\\\\mvrec_suporte\\BAT_MARCOS\\BAT_JAVA\\src\\br\\controle\\apaga_inicializar.bat");
+						Runtime.getRuntime().exec(usuario_dir+"\\apaga_inicializar.bat");
 					} catch (IOException e) {
-						JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar mover o bat para a inicialização do S.O.",  "Atenção", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Atenção: Erro ao tentar remover o bat para a inicialização do S.O.",  "Atenção", JOptionPane.WARNING_MESSAGE);
 						
 					}
 				}

@@ -8,10 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 public class AcessoBD{
  
     public static Connection conectar() throws Exception {
-        Connection connection = null;
+    	
+    	Connection connection = null;
         String driver = "";
         String usuario = "";
         String senha = "";
@@ -25,7 +28,7 @@ public class AcessoBD{
  
         if (!prop_file.isFile()) {
             throw new Exception("Não achou a arquivo de propriedade, caminho:" + prop_file.getAbsolutePath() + " , errado.");
-        }
+        } 
  
         Properties properties = new Properties();
         //Setamos o arquivo que será lido
@@ -46,6 +49,8 @@ public class AcessoBD{
         connection = DriverManager.getConnection(url + banco, usuario, senha);
 
         return connection;
+        
+        
     }
  
     //sobrecarga dos metodo desconectar,
@@ -56,7 +61,7 @@ public class AcessoBD{
                 conn.close();
             }
         } catch (Exception e) {
-            System.out.println("Exceção, causa:" + e.getClass());
+            System.out.println("Exceção, causa desconectar1:" + e.getClass());
             e.printStackTrace();
         }
     }
@@ -72,7 +77,7 @@ public class AcessoBD{
             }
  
         } catch (Exception e) {
-            System.out.println("Exceção, causa:" + e.getClass());
+            System.out.println("Exceção, causa: desconectar2" + e.getClass());
             e.printStackTrace();
         }
     }
@@ -93,7 +98,7 @@ public class AcessoBD{
             }
  
         } catch (Exception e) {
-            System.out.println("Exceção, causa:" + e.getClass());
+            System.out.println("Exceção, causa: desconectar3" + e.getClass());
             e.printStackTrace();
  
         }

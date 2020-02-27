@@ -119,9 +119,7 @@ public class config {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Ocorreu um erro, causa:" + e.getMessage());
-				e.printStackTrace();
-				return null;
+				return "Branco";
 			} finally {
 				AcessoBD.desconectar(conn11);
 			}

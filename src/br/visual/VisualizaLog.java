@@ -99,7 +99,7 @@ public class VisualizaLog {
 			frmVisualizaLog.getContentPane().setBackground(Color.BLACK);
 		}
 		frmVisualizaLog.getContentPane().setForeground(Color.WHITE);
-		frmVisualizaLog.setTitle("Busca Contatos - 1.0 | Marcos Luz - Bat tools");
+		frmVisualizaLog.setTitle("Visualiza Log - 1.0 | Marcos Luz - Bat tools");
 
 		frmVisualizaLog.setBounds(500, 100, 490, 300);
 		frmVisualizaLog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,7 +119,7 @@ public class VisualizaLog {
 		
 		
 		frmVisualizaLog.getContentPane().add(textLista);
-		
+		final JLabel lblQtdLog = new JLabel("Qtd. Log: 0");
 		JButton btnNewButton = new JButton("Pesquisar/Atualizar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -135,14 +135,33 @@ public class VisualizaLog {
 
 				 
 				String SELECT="SELECT * FROM log_battools ORDER BY DH_LOG desc";
+				String SELECT_QT="SELECT COUNT(1) FROM log_battools";
 			
-				
-				
-				
 					List<Cliente> Contatos=new ArrayList<Cliente>();
 					Cliente cli=null;
 					Connection conn1 = null;
 					Object pstm1;
+					
+					try {
+						conn1=AcessoBD.conectar();
+						pstm1=conn1.prepareStatement(SELECT_QT);
+						rs=((PreparedStatement) pstm1).executeQuery();
+							
+						while(rs.next()){
+							
+							String ok1 = rs.getString(1);
+							if (ok1.contentEquals("0")) {JOptionPane.showMessageDialog(null, "Não existem logs para serem visualizados!", "Atenção", JOptionPane.WARNING_MESSAGE);}
+							lblQtdLog.setText("Qtd. Log: "+ok1);
+							 }
+						
+					
+					} catch (Exception e) {
+						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
+						e.printStackTrace();
+					}finally{
+						AcessoBD.desconectar(conn1);
+					}
+					
 					try {
 						conn1=AcessoBD.conectar();
 						pstm1=conn1.prepareStatement(SELECT);
@@ -164,13 +183,8 @@ public class VisualizaLog {
 						AcessoBD.desconectar(conn1);
 					}
 					
-					if(textLista.getText().trim().isEmpty()){
-						gravaLog Log=new gravaLog();
-						Log.setFuncao("Não encontrou contatos com os parametros passados. - Busca Contato");
-						gravaLog.insere_log(Log);
-						JOptionPane.showMessageDialog(null, "Não foram encontrados contatos deste cliente.", "Atenção", JOptionPane.WARNING_MESSAGE);
-						return;
-						}
+	
+					
 
 			}
 		});
@@ -179,7 +193,7 @@ public class VisualizaLog {
 		
 		JLabel lblBuscarContatos = new JLabel("Visualiza Log");
 		lblBuscarContatos.setFont(new Font("Papyrus", Font.BOLD, 15));
-		lblBuscarContatos.setBounds(174, 0, 172, 38);
+		lblBuscarContatos.setBounds(174, 0, 124, 38);
 		frmVisualizaLog.getContentPane().add(lblBuscarContatos);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -190,8 +204,38 @@ public class VisualizaLog {
 		    	frmVisualizaLog.setVisible(false);
 			}
 		});
-		btnVoltar.setBounds(246, 49, 89, 23);
+		btnVoltar.setBounds(206, 49, 89, 23);
 		frmVisualizaLog.getContentPane().add(btnVoltar);
+		
+		lblQtdLog.setBounds(51, 33, 89, 14);
+		frmVisualizaLog.getContentPane().add(lblQtdLog);
+		
+		JButton btnLimparLog = new JButton("Limpar Logs");
+		btnLimparLog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conn1 = null;
+				ResultSet rs = null;
+				Object pstm1;
+				String DELETE="delete FROM log_battools";
+				try {
+					conn1=AcessoBD.conectar();
+					pstm1=conn1.prepareStatement(DELETE);
+					rs=((PreparedStatement) pstm1).executeQuery();
+					textLista.setText("");
+					lblQtdLog.setText("Qtd. Log: 0");
+					JOptionPane.showMessageDialog(null, "Logs apagados com sucesso!", "Atenção", JOptionPane.WARNING_MESSAGE);
+					
+				
+				} catch (Exception e1) {
+					System.err.println("Ocorreu um erro, causa:"+e1.getMessage());
+					e1.printStackTrace();
+				}finally{
+					AcessoBD.desconectar(conn1);
+				}
+			}
+		});
+		btnLimparLog.setBounds(315, 49, 108, 23);
+		frmVisualizaLog.getContentPane().add(btnLimparLog);
 		
 		
 		
