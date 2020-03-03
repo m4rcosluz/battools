@@ -26,6 +26,7 @@ import java.awt.SystemColor;
 public class Hora_extra {
 
 	protected static final Object Resultado = null;
+	protected static Object txt_salario;
 	private JFrame frmHoraExtra;
 	private JTextField txt_add_noturno;
 
@@ -103,16 +104,27 @@ public class Hora_extra {
 
 		final JTextField txt_salario = new JTextField();
 		txt_salario.setBackground(SystemColor.inactiveCaptionBorder);
-		txt_salario.setText("0");
+		//txt_salario.setText("0");
 		txt_salario.setDocument(new ValidaLetras());
 		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
 		String salario_user = br.modelo.config.verifica_campo_salario();
 
-				if(sn_salario_campo ==null) {
+				if(sn_salario_campo.contentEquals("Não")) {
+					System.out.println("Entrou");
+					br.modelo.config conf=new br.modelo.config();
+					sn_salario_campo = conf.getSnSalario();
+					System.out.println(sn_salario_campo);
+					if(sn_salario_campo ==null) {
 					sn_salario_campo = "Não";
+					}
 				}
 				
-				if(sn_salario_campo.equals("Sim")) {
+				if(sn_salario_campo.contentEquals("Sim")) {
+					System.out.println("Entrou2");
+					if(salario_user.contentEquals("")) {
+						br.modelo.config conf=new br.modelo.config();
+						salario_user = conf.getSalario();
+					} 
 					txt_salario.setText(salario_user);
 				}
 

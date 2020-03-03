@@ -107,12 +107,14 @@ public class Decimo_terceiro {
 		lblMsgMeses.setVisible(false);
 		text1parcela = new JTextField();
 		text1parcela.setColumns(10);
-		text1parcela.setEnabled(false);
+		text1parcela.setEnabled(true);
+		text1parcela.setEditable(false);
 		text1parcela.setText("R$ " + 0.00);
 		text2parcela = new JTextField();
 		text2parcela.setColumns(10);
 		text2parcela.setText("R$ " + 0.00);
-		text2parcela.setEnabled(false);
+		text2parcela.setEnabled(true);
+		text2parcela.setEditable(false);
 		JButton btnNewButton = new JButton("CALCULAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,8 +210,9 @@ public class Decimo_terceiro {
 			}
 		});
 		textDecimoTotal.setText("R$ 0.0");
-		textDecimoTotal.setEnabled(false);
+		textDecimoTotal.setEnabled(true);
 		textDecimoTotal.setColumns(10);
+		textDecimoTotal.setEditable(false);
 
 		JLabel lblValorTotal = new JLabel("Valor total:");
 

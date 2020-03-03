@@ -156,8 +156,8 @@ public class VisualizaLog {
 						
 					
 					} catch (Exception e) {
-						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "A tentativa de conectar com o banco de dados falhou!", "Atenção", JOptionPane.WARNING_MESSAGE);
+						return;
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
@@ -177,8 +177,7 @@ public class VisualizaLog {
 						
 					
 					} catch (Exception e) {
-						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "A tentativa de conectar com o banco de dados falhou!", "Atenção", JOptionPane.WARNING_MESSAGE);
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
@@ -200,7 +199,7 @@ public class VisualizaLog {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//DENTRO DO BOTÃO, FIZ CHAMAR A CLASS MAIN DA PROXIMA TELA, E OCUTEI A HOME.
-				config.main(null);
+				Telaconfig.main(null);
 		    	frmVisualizaLog.setVisible(false);
 			}
 		});

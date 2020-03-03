@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.awt.event.ActionEvent;
+@SuppressWarnings("unused")
 public class TelaCadastroCliente {
 
 	protected static final Object Resultado = null;
@@ -120,6 +121,7 @@ public class TelaCadastroCliente {
 		JButton btnLimpar = new JButton("Limpar");
 		
 		btnBuscar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				if(textId.getText().trim().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Atenção: Campo Skype não pode ser vazio.",  "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -177,6 +179,7 @@ public class TelaCadastroCliente {
 		//final JButton btnCadastrar = new JButton("Cadastrar");
 		
 		btnCadastr.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				btnCadastrar.setText("Cadastrar");
 				btnCadastr.setEnabled(false);
@@ -269,7 +272,6 @@ public class TelaCadastroCliente {
 				}
 				
 				if(Operacao.contentEquals("Alterar")) {
-					IN_UP_DEL_Cliente cli=new IN_UP_DEL_Cliente();
 					Cliente cli1=new Cliente();
 					cli1.setCd_contato(id);
 					cli1.setNm_contato(nome.toUpperCase());
@@ -305,12 +307,13 @@ public class TelaCadastroCliente {
 		textRamal.setText("0");
 		textRamal.setDocument(new ValidaLetras());
 		
-		JLabel lblRamal = new JLabel("Ramal :");
+		JLabel lblRamal = new JLabel("Telefone :");
 		lblRamal.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 
 		
 		btnLimpar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				String Operacao = btnCadastrar.getText();
 				textId.setText("");
@@ -383,7 +386,7 @@ public class TelaCadastroCliente {
 									.addComponent(textRamal, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(38)
-									.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)))))
+									.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))))) //61
 					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -398,7 +401,7 @@ public class TelaCadastroCliente {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblSkype)
 						.addComponent(lblCdCliente)
-						.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE) //16
 						.addComponent(lblNome))
 					.addGap(6)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)

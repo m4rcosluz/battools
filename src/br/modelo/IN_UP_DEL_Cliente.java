@@ -15,14 +15,12 @@ public class IN_UP_DEL_Cliente {
 	static String usuario_sessao = System.getProperty("user.name");
 	private final static String INSERT=" INSERT INTO cliente_contato(cd_contato, nm_contato, cd_cliente, cd_usuario, dt_gravacao, cd_ramal)VALUES(?,?,?,?,sysdate,?)";
 	private String cd_contato;
-	private String nm_contato;
-	private String cd_ramal;
-	
 	public void insere_cliente(Cliente cli){
 		
 		
 		Connection conn1 = null;
 		Object pstm1;
+		
 		try {String VALIDA_CONEXAO = "select * from dbamv.cliente_contato";
 			conn1=AcessoBD.conectar();
 			pstm1=conn1.prepareStatement(VALIDA_CONEXAO);
@@ -85,21 +83,26 @@ public class IN_UP_DEL_Cliente {
 			}
 		}
 
+		
 		public String getCd_contato() {
 			return getCd_contato();
 		}
+		
 		public void setCd_contato(String string) {
 			this.cd_contato = string;
 		}
+		
 		public String getNm_contato() {
 			return getNm_contato();
 		}
+		
 		public void setNm_contato(String nm_contato) {
-			this.nm_contato = nm_contato;
 		}
+		
 		public String getCd_cliente() {
 			return cd_contato;
 		}
+		
 		public void setCd_cliente(String cd_cliente) {
 			this.cd_contato = cd_cliente;
 		}
@@ -109,7 +112,6 @@ public class IN_UP_DEL_Cliente {
 		}
 		
 		public void setCd_ramal(String cd_ramal) {
-			this.cd_ramal = cd_ramal;
 			
 		}
 	

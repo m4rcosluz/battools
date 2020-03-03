@@ -12,7 +12,15 @@ public class ClockLabel extends JLabel {
         t.start();
     }
 
-    private String getDateTime() {
+    public static String getDateTime() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    }
+    
+    public static String getTime() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    }
+    
+    public static String getDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }

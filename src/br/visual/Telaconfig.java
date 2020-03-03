@@ -9,17 +9,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import br.controle.AcessoBD;
 import br.controle.ClockLabel;
 import br.modelo.gravaLog;
-public class config {
+public class Telaconfig {
 
 	protected static final Object Rosa = null;
 	protected static final String Sim = null;
@@ -37,7 +39,7 @@ public class config {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					config window = new config();
+					Telaconfig window = new Telaconfig();
 					window.configBat.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,7 @@ public class config {
 	/**
 	 * Create the application.
 	 */
-	public config() {
+	public Telaconfig() {
 		initialize();
 	}
 
@@ -69,24 +71,24 @@ public class config {
 
 		String cor = br.modelo.config.define_cor(null);
 		
-		if(cor.equals("Azul")){
-			configBat.getContentPane().setBackground(Color.BLUE);
+		if (cor.equals("Azul")) {
+			configBat.getContentPane().setBackground(SystemColor.textHighlight);
 		}
-		
-		if(cor.equals("Vermelho")){
-			configBat.getContentPane().setBackground(Color.RED);
+
+		if (cor.equals("Vermelho")) {
+			configBat.getContentPane().setBackground(new Color(220, 20, 60));
 		}
-		
-		if(cor.equals("Branco")){
-			configBat.getContentPane().setBackground(Color.WHITE);
+
+		if (cor.equals("Branco")) {
+			configBat.getContentPane().setBackground(new Color(230, 230, 250));
 		}
-		
-		if(cor.equals("Rosa")){
-			configBat.getContentPane().setBackground(Color.PINK);
+
+		if (cor.equals("Rosa")) {
+			configBat.getContentPane().setBackground(new Color(238, 130, 238));
 		}
-		
-		if(cor.equals("Preto")){
-			configBat.getContentPane().setBackground(Color.BLACK);
+
+		if (cor.equals("Preto")) {
+			configBat.getContentPane().setBackground(UIManager.getColor("ToolBar.floatingForeground"));
 		}
 		
 		//frame.getContentPane().setBackground(Color.WHITE);
@@ -138,9 +140,29 @@ public class config {
 		btnSalvar.addActionListener(new ActionListener() {
 			private ResultSet rs;
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("141");
+				String cor = ((String) comboBox.getSelectedItem());
+				String sn_salario = ((String) comboBox_2.getSelectedItem());
+				String salario_user = txtSalario.getText();
+				String inicia_windows = ((String) comboBox_1.getSelectedItem());
+				String snsalario_user = ((String) comboBox_2.getSelectedItem());	
+				br.modelo.config conf=new br.modelo.config();
+				conf.setCor(cor);
+				conf.setSnSalario(sn_salario);
+				conf.setSalario(salario_user);
+				conf.setInicia_windows(inicia_windows);
+				String sn_salario_campo = conf.getSnSalario();
+				System.out.println(sn_salario_campo);
+				if(snsalario_user.equals("Sim")) {
+					txtSalario.setEnabled(true);
+				} else {
+					txtSalario.setEnabled(false);
+					} 
+				System.out.println("149");
 				gravaLog Log=new gravaLog();
 				Log.setFuncao("Clicou no botão Salvar - Config.");
 				gravaLog.insere_log(Log);
+				System.out.println("153");
 				
 				String teste = br.modelo.config.define_cor(null);
 				System.out.print(teste);
@@ -153,6 +175,9 @@ public class config {
 				return;
 			}
 				
+			
+			
+			textCheat.setText(null);
 			String usuario_sessaob = System.getProperty("user.name");
 				String usuario_sessao = "'"+usuario_sessaob+"'";
 				String SELECT_CONFIG_USER="SELECT count(cd_usuario) FROM config_battols where cd_usuario = "+usuario_sessao;
@@ -160,7 +185,7 @@ public class config {
 				
 				Connection conn1 = null;
 					Object pstm1;
-					try {
+					try {System.out.println("173");
 						conn1=AcessoBD.conectar();
 						pstm1=conn1.prepareStatement(SELECT_CONFIG_USER);
 						rs=((PreparedStatement) pstm1).executeQuery();
@@ -171,13 +196,16 @@ public class config {
 							
 	
 					} catch (Exception e) {
-						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-						e.printStackTrace();
+						System.out.println("184");
+						textField.setText("1");
+						//System.err.println("Ocorreu um erro, causa:"+e.getMessage());
+						//e.printStackTrace();
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
 					
 					try {
+						System.out.println("207");
 						conn1=AcessoBD.conectar();
 						pstm1=conn1.prepareStatement(SELECT_COR);
 						rs=((PreparedStatement) pstm1).executeQuery();
@@ -188,56 +216,41 @@ public class config {
 							
 	
 					} catch (Exception e) {
-						System.err.println("Ocorreu um erro, causa:"+e.getMessage());
-						e.printStackTrace();
+						System.out.println("218");
 					}finally{
 						AcessoBD.desconectar(conn1);
 					}
 				
-					
 					String result = textField.getText();
 					double valida = Double.parseDouble(result);
-					
 					if(valida < 1){
 						Log.setFuncao("Inseriu configuração - Config");
 						gravaLog.insere_log(Log);
 						System.out.print("insert");
-						
-						String cor = ((String) comboBox.getSelectedItem());
-						String inicia_windows = ((String) comboBox_1.getSelectedItem());
+						System.out.println("231");
+						//String cor = ((String) comboBox.getSelectedItem());
+						//String inicia_windows = ((String) comboBox_1.getSelectedItem());
 						//IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
-						br.modelo.config conf=new br.modelo.config();
+
 						conf.setCor(cor);
 						conf.setInicia_windows(inicia_windows);
 						br.modelo.config.insere_config(conf);
 						
 					} else {
+						System.out.println("241");
 						Log.setFuncao("Atualizou configuração - Config");
 						gravaLog.insere_log(Log);
 						System.out.print("update");
-						String cor = ((String) comboBox.getSelectedItem());
-						String sn_salario = ((String) comboBox_2.getSelectedItem());
-						String salario_user = txtSalario.getText();
-						String inicia_windows = ((String) comboBox_1.getSelectedItem());
+
 						//IN_UP_DEL_Cliente cli_IN_UP_DEL=new IN_UP_DEL_Cliente();
-						br.modelo.config conf=new br.modelo.config();
-						conf.setCor(cor);
-						conf.setSnSalario(sn_salario);
-						conf.setSalario(salario_user);
-						conf.setInicia_windows(inicia_windows);
+						
 						br.modelo.config.update_config(conf);
 						
 						}
 					
 				String cor1 = ((String) comboBox.getSelectedItem());	
-				String inicia_windows = (String) comboBox_1.getSelectedItem(); 
-				String salario_user = ((String) comboBox_2.getSelectedItem());	
-				
-				if(salario_user.equals("Sim")) {
-					txtSalario.setEnabled(true);
-				} else {
-					txtSalario.setEnabled(false);
-					} 
+				//String inicia_windows = (String) comboBox_1.getSelectedItem(); 
+				System.out.println("254");
 				
 				String usuario_dir = System.getProperty("user.dir")+"\\Services";
 				System.out.println(usuario_dir+"\\instala_inicializar.bat");
@@ -259,24 +272,24 @@ public class config {
 					}
 				}
 				
-				if(cor1.equals("Azul")){
-					configBat.getContentPane().setBackground(Color.BLUE);
+				if (cor.equals("Azul")) {
+					configBat.getContentPane().setBackground(SystemColor.textHighlight);
 				}
-				
-				if(cor1.equals("Vermelho")){
-					configBat.getContentPane().setBackground(Color.RED);
+
+				if (cor.equals("Vermelho")) {
+					configBat.getContentPane().setBackground(new Color(220, 20, 60));
 				}
-				
-				if(cor1.equals("Branco")){
-					configBat.getContentPane().setBackground(Color.WHITE);
+
+				if (cor.equals("Branco")) {
+					configBat.getContentPane().setBackground(new Color(230, 230, 250));
 				}
-				
-				if(cor1.equals("Rosa")){
-					configBat.getContentPane().setBackground(Color.PINK);
+
+				if (cor.equals("Rosa")) {
+					configBat.getContentPane().setBackground(new Color(238, 130, 238));
 				}
-				
-				if(cor1.equals("Preto")){
-					configBat.getContentPane().setBackground(Color.BLACK);
+
+				if (cor.equals("Preto")) {
+					configBat.getContentPane().setBackground(UIManager.getColor("ToolBar.floatingForeground"));
 				}
 			}
 			

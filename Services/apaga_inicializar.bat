@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 set unidade=j:
 set usuario=%username%
 set arquivo=marcos

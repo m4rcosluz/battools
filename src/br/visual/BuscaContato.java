@@ -1,6 +1,7 @@
 package br.visual;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 
@@ -27,6 +28,7 @@ import java.awt.Font;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
@@ -106,19 +108,16 @@ public class BuscaContato {
 		frmBuscaContatos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		final JTextArea textLista = new JTextArea();
-		textLista.addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent e) {
-			}
-		});
-		//JScrollPane scrollPane = new JScrollPane(textLista, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		textLista.append("\n");
-		textLista.setBounds(10, 113, 454, 137);
-	
-		
-	       
+		textLista.setLineWrap(true);
+		JScrollPane barraRolagem = new JScrollPane(textLista);
+		frmBuscaContatos.add(barraRolagem);
+		//this.getContentPane().add(barraRolagem);
 
+		//JScrollPane scrollPane = new JScrollPane(textLista, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		
+		textLista.append("\n");
+		textLista.setBounds(10, 113, 454, 137);	
+		   
 		frmBuscaContatos.getContentPane().add(textLista);
 		
 		textCliente = new JTextField();

@@ -10,6 +10,8 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+import br.modelo.gravaLog;
+
 public class AcessoBD{
  
     public static Connection conectar() throws Exception {
@@ -102,5 +104,24 @@ public class AcessoBD{
             e.printStackTrace();
  
         }
+    }
+    
+    public static String verifica_conexao(gravaLog log){
+    	Connection conn = null;
+    	PreparedStatement pstm = null;
+    	ResultSet rs = null;
+    	final String VERIF="select * from config_battols";
+    	try {
+    		conn=AcessoBD.conectar();
+    		pstm=conn.prepareStatement(VERIF);
+    		((PreparedStatement) pstm).executeUpdate();
+    		return "Ok";
+
+    	} catch (Exception e) {
+    		return "Erro";
+    		//JOptionPane.showMessageDialog(null, "Atenção: A aplicação pode não funcionar por completa, não",  "Atenção", JOptionPane.WARNING_MESSAGE);
+    	}finally{
+    		AcessoBD.desconectar(conn, pstm, rs);
+    	}
     }
 }
