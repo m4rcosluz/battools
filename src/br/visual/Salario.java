@@ -257,13 +257,13 @@ public class Salario {
 						
 
 						if(idade >= 99) {vl_plano = 688.97;}
-						if(idade >= 58) {vl_plano = 566.21;}
-						if(idade >= 53) {vl_plano = 443.42;}
-						if(idade >= 48) {vl_plano = 320.57;}
-						if(idade >= 43) {vl_plano = 254.77;}
-						if(idade >= 38) {vl_plano = 214.92;}
-						if(idade >= 33) {vl_plano = 100.38;}
-						if(idade >= 28) {vl_plano = 91.46;}
+						if(idade <= 58) {vl_plano = 566.21;}
+						if(idade <= 53) {vl_plano = 443.42;}
+						if(idade <= 48) {vl_plano = 320.57;}
+						if(idade <= 43) {vl_plano = 254.77;}
+						if(idade <= 38) {vl_plano = 214.92;}
+						if(idade <= 33) {vl_plano = 100.38;}
+						if(idade <= 28) {vl_plano = 91.46;}
 						if(idade <= 23) {vl_plano = 73.66;}
 						System.out.println(vl_plano);
 						}
