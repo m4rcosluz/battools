@@ -219,5 +219,36 @@ public class config {
 		return cor;
 
 	}
+	
+	public static String verifica_campo_inicia_os(config conf) {
+		{
+
+			String usuario_sessaob = System.getProperty("user.name");
+			String usuario_sessao = "'" + usuario_sessaob + "'";
+			String select = "SELECT sn_iniciar_so FROM config_battols where cd_usuario = "
+					+ usuario_sessao;
+
+			Connection conn11 = null;
+			Object pstm11;
+			try {
+				conn11 = AcessoBD.conectar();
+				pstm11 = conn11.prepareStatement(select);
+				rs = ((PreparedStatement) pstm11).executeQuery();
+				while (rs.next()) {
+					String valida = rs.getString(1);
+					return valida;
+				}
+
+			} catch (Exception e) {
+				return "Não";
+			} finally {
+				AcessoBD.desconectar(conn11);
+			}
+
+		}
+		return cor;
+		
+	}
+	
 
 }

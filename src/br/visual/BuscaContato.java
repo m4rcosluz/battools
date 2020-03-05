@@ -118,7 +118,7 @@ public class BuscaContato {
 		textLista.append("\n");
 		textLista.setBounds(10, 113, 454, 137);	
 		   
-		frmBuscaContatos.getContentPane().add(textLista);
+		//frmBuscaContatos.getContentPane().add(textLista);
 		
 		textCliente = new JTextField();
 		textCliente.setBounds(10, 37, 97, 20);
