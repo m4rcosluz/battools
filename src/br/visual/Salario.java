@@ -2,9 +2,11 @@ package br.visual;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.SystemColor;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import br.controle.ValidaLetras;
 
@@ -63,25 +65,30 @@ public class Salario {
 		
 		String cor = br.modelo.config.define_cor(null);
 
+
 		if (cor.equals("Azul")) {
-			frmSalario.getContentPane().setBackground(Color.BLUE);
+			frmSalario.getContentPane().setBackground(SystemColor.textHighlight);
 		}
 
 		if (cor.equals("Vermelho")) {
-			frmSalario.getContentPane().setBackground(Color.RED);
+			frmSalario.getContentPane().setBackground(new Color(220, 20, 60));
 		}
 
 		if (cor.equals("Branco")) {
-			frmSalario.getContentPane().setBackground(Color.WHITE);
+			frmSalario.getContentPane().setBackground(new Color(230, 230, 250));
 		}
 
 		if (cor.equals("Rosa")) {
-			frmSalario.getContentPane().setBackground(Color.PINK);
+			frmSalario.getContentPane().setBackground(new Color(238, 130, 238));
 		}
 
 		if (cor.equals("Preto")) {
-			frmSalario.getContentPane().setBackground(Color.BLACK);
+			frmSalario.getContentPane().setBackground(UIManager.getColor("ToolBar.floatingForeground"));
 		}
+		
+		String sn_salario_campo = br.modelo.config.verifica_campo_sn_salario();
+		String salario_user = br.modelo.config.verifica_campo_salario();
+
 		
 		frmSalario.setTitle("Desconto Salário - 1.0 | Marcos Luz - Bat tools");
 		frmSalario.setBounds(500, 100, 450, 317);
@@ -132,7 +139,26 @@ public class Salario {
 		JLabel lblNewLabel = new JLabel("Sal\u00E1rio Bruto");
 		lblNewLabel.setBounds(166, 11, 86, 14);
 		
-		
+
+				if(sn_salario_campo.contentEquals("Não")) {
+					System.out.println("Entrou");
+					br.modelo.config conf=new br.modelo.config();
+					sn_salario_campo = conf.getSnSalario();
+					System.out.println(sn_salario_campo);
+					if(sn_salario_campo ==null) {
+					sn_salario_campo = "Não";
+					}
+				}
+				
+				if(sn_salario_campo.contentEquals("Sim")) {
+					System.out.println("Entrou2");
+					if(salario_user.contentEquals("")) {
+						br.modelo.config conf=new br.modelo.config();
+						salario_user = conf.getSalario();
+					} 
+					textSalario.setText(salario_user);
+				}
+
 
 		rdbtnPlSaude.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
