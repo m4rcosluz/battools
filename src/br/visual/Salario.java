@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import br.controle.ValidaLetras;
+import br.modelo.gravaLog;
 
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
@@ -65,7 +66,10 @@ public class Salario {
 		
 		String cor = br.modelo.config.define_cor(null);
 
-
+		gravaLog Log=new gravaLog();
+		Log.setFuncao("Entrou na página Descontos salário.");
+		gravaLog.insere_log(Log);
+		
 		if (cor.equals("Azul")) {
 			frmSalario.getContentPane().setBackground(SystemColor.textHighlight);
 		}
@@ -269,10 +273,9 @@ public class Salario {
 				resultado_final = salario - vl_desc_inss - vl_desc_transporte - vl_plano;
 				double soma_des = vl_desc_inss + vl_desc_transporte + vl_plano;
 				
-				System.out.println(vl_desc_inss);
-				System.out.println(vl_desc_transporte);
-				System.out.println(resultado_final);
-				System.out.println(vl_plano);
+				gravaLog Log=new gravaLog();
+				Log.setFuncao("Calculou descontos do salário."+salario);
+				gravaLog.insere_log(Log);
 				
 				textArea.setText("Salario Normal: "+salario+"\n"+"Salário com Descontos: "+resultado_final+"\n"+
 						"Total dos descontos: "+soma_des+"\n"+ "Descontos:"+"\n"+
