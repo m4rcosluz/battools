@@ -145,17 +145,14 @@ public class Salario {
 		
 
 				if(sn_salario_campo.contentEquals("Não")) {
-					System.out.println("Entrou");
 					br.modelo.config conf=new br.modelo.config();
 					sn_salario_campo = conf.getSnSalario();
-					System.out.println(sn_salario_campo);
 					if(sn_salario_campo ==null) {
 					sn_salario_campo = "Não";
 					}
 				}
 				
 				if(sn_salario_campo.contentEquals("Sim")) {
-					System.out.println("Entrou2");
 					if(salario_user.contentEquals("")) {
 						br.modelo.config conf=new br.modelo.config();
 						salario_user = conf.getSalario();
@@ -237,8 +234,6 @@ public class Salario {
 					
 					
 					if(tp_plano.equals("Infermaria")) {
-						System.out.println("In");
-						
 
 						if(idade >= 99) {vl_plano = 525.55;}
 						if(idade <= 58) {vl_plano = 426.27;}
@@ -249,12 +244,9 @@ public class Salario {
 						if(idade <= 33) {vl_plano = 49.83;}
 						if(idade <= 28) {vl_plano = 47.75;}
 						if(idade <= 23) {vl_plano = 40.71;}
-						System.out.println(vl_plano);
 						}
 					
 					if(tp_plano.equals("Apartamento")) {
-						System.out.println("Ap");
-						
 
 						if(idade >= 99) {vl_plano = 688.97;}
 						if(idade <= 58) {vl_plano = 566.21;}
@@ -265,7 +257,7 @@ public class Salario {
 						if(idade <= 33) {vl_plano = 100.38;}
 						if(idade <= 28) {vl_plano = 91.46;}
 						if(idade <= 23) {vl_plano = 73.66;}
-						System.out.println(vl_plano);
+
 						}
 					
 				}
