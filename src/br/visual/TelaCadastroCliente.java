@@ -334,7 +334,6 @@ public class TelaCadastroCliente {
 			}
 		});
 				
-
 		GroupLayout groupLayout = new GroupLayout(frmCadastroCli.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -386,7 +385,7 @@ public class TelaCadastroCliente {
 									.addComponent(textRamal, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(38)
-									.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))))) //61
+									.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)))))
 					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -401,7 +400,7 @@ public class TelaCadastroCliente {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblSkype)
 						.addComponent(lblCdCliente)
-						.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE) //16
+						.addComponent(lblRamal, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNome))
 					.addGap(6)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -424,4 +423,3 @@ public class TelaCadastroCliente {
 		frmCadastroCli.getContentPane().setLayout(groupLayout);
 	}
 }
-

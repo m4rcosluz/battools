@@ -110,7 +110,8 @@ public class BuscaContato {
 		final JTextArea textLista = new JTextArea();
 		textLista.setLineWrap(true);
 		JScrollPane barraRolagem = new JScrollPane(textLista);
-		frmBuscaContatos.add(barraRolagem);
+		textLista.setVisible(true);
+		frmBuscaContatos.getContentPane().add(barraRolagem);
 		//this.getContentPane().add(barraRolagem);
 
 		//JScrollPane scrollPane = new JScrollPane(textLista, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -194,7 +195,7 @@ public class BuscaContato {
 							cli.setCd_ramal(rs.getString("cd_ramal"));
 							Contatos.add(cli);
 							System.out.println(cli.getCd_cliente());
-							textLista.append("Nome: "+cli.getNm_contato()+"      Skype: "+cli.getCd_contato()+   "       Ramal: "+cli.getCd_ramal()+ "\n");
+							textLista.append("Nome: "+cli.getNm_contato()+"   Skype: "+cli.getCd_contato()+   "    Ramal: "+cli.getCd_ramal()+"   Cliente: "+cli.getCd_cliente()+ "\n");
 							 }
 						
 					
@@ -239,7 +240,7 @@ public class BuscaContato {
 		btnVoltar.setBounds(264, 79, 89, 23);
 		frmBuscaContatos.getContentPane().add(btnVoltar);
 		
-		JLabel lblNome = new JLabel("Nome (Cx Alta):");
+		JLabel lblNome = new JLabel("Nome: ");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNome.setBounds(10, 68, 117, 16);
 		frmBuscaContatos.getContentPane().add(lblNome);
@@ -249,6 +250,10 @@ public class BuscaContato {
 		textNome.setColumns(10);
 		textNome.setBounds(10, 82, 97, 20);
 		frmBuscaContatos.getContentPane().add(textNome);
+		
+		//JTextArea textLista = new JTextArea();
+		textLista.setBounds(10, 113, 454, 137);
+		frmBuscaContatos.getContentPane().add(textLista);
 		
 		
 		
